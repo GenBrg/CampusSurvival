@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     public bool isSprint;
     public bool isCrouch;
 
-    public float sprintForwardMaxSpeedModifier = 1.2f;
+    public float sprintForwardMaxSpeedModifier = 1.5f;
     public float crouchMaxSpeedModifier = 0.5f;
     public float inAirMoveForceModifier = 0.1f;
 
@@ -75,6 +75,10 @@ public class CharacterMovement : MonoBehaviour
         {
             maxSpeed *= sprintForwardMaxSpeedModifier;
         }
+
+        Vector3 scale = transform.localScale;
+        scale.y = isCrouch ? crouchHeightModifier : 1.0f;
+        transform.localScale = scale;
 
         if (!isGrounded)
         {
