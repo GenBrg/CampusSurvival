@@ -42,7 +42,7 @@ public class CharacterMovement : MonoBehaviour
         {
             velocity.y = -2f;
 
-            if (InputManager.Instance.Jump)
+            if (Input.GetButtonDown("Jump"))
             {
                 velocity.y = Mathf.Sqrt(2.0f * Constants.Gravity * jumpHeight);
 
@@ -56,8 +56,8 @@ public class CharacterMovement : MonoBehaviour
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         // Check stance
-        isCrouch = InputManager.Instance.Crouch;
-        isSprint = isCrouch ? false : InputManager.Instance.Sprint && 
+        isCrouch = Input.GetButton("Crouch");
+        isSprint = isCrouch ? false : Input.GetButton("Sprint") && 
             verticalInput > 0.0f &&
             Vector3.Dot(velocity, transform.forward) > 0.0f;
 
