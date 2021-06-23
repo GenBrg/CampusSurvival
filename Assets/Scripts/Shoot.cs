@@ -11,11 +11,13 @@ public class Shoot : MonoBehaviour
     public ParticleSystem muzzleFlash;
 
     private RateLimiter fireRateLimiter;
+    private InputManager input;
 
     // Start is called before the first frame update
     void Start()
     {
         fireRateLimiter = new RateLimiter(fireInterval, Fire);
+        input = FindObjectOfType<InputManager>();
     }
 
     private void Fire()
@@ -36,7 +38,7 @@ public class Shoot : MonoBehaviour
             transform.LookAt(transform.parent.position + transform.parent.forward * range);
         }
 
-        if (Input.GetButton("Fire1"))
+        if (input.Fire)
         {
             fireRateLimiter.Invoke();
         }

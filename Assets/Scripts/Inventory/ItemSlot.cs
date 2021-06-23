@@ -58,6 +58,11 @@ public class ItemSlot : MonoBehaviour
         get => !holdingItem || amount == 0;
     }
 
+    public bool IsFull
+    {
+        get => !IsEmpty && (HoldingItem.maxStackSize == Amount);
+    }
+
     private void ClearSlot()
     {
         amount = 0;
@@ -66,20 +71,64 @@ public class ItemSlot : MonoBehaviour
         amountText.text = "";
     }
 
-    private void Start()
+    private void Awake()
     {
         itemIcon = GetComponentsInChildren<Image>()[1];
         amountText = GetComponentInChildren<TextMeshProUGUI>();
 
-        if (holdingItem)
+        ClearSlot();
+    }
+
+    // @return amount actually deducted from the item slot.
+    public int DeductItem(int amountToDeduct)
+    {
+        if (IsEmpty || amountToDeduct == 0)
         {
-            itemIcon.sprite = holdingItem.icon;
-            amountText.text = "x" + amount;
-        } 
+            return 0;
+        }
+
+        amountToDeduct = Mathf.Min(Amount, amountToDeduct);
+
+        if (amountToDeduct == Amount)
+        {
+            ClearSlot();
+        }
         else
         {
-            itemIcon.sprite = null;
-            amountText.text = "";
+            Amount -= amountToDeduct;
         }
+
+        return amountToDeduct;
+    }
+
+    // @return amount actually added to the item slot
+    public int AddItem(Item item, int amountToAdd)
+    {
+        if ((!IsEmpty && item != HoldingItem) || amountToAdd == 0 || !item)
+        {
+            return 0;
+        }
+
+        HoldingItem = item;
+        amountToAdd = Mathf.Min(item.maxStackSize - Amount, amountToAdd);
+        Amount += amountToAdd;
+
+        return amountToAdd;
+    }
+
+    public void Drop(int amountToDrop)
+    {
+        Item itemToDrop = HoldingItem;
+        amountToDrop = DeductItem(amountToDrop);
+
+        // TODO Project items from player
+    }
+
+    public void TransferTo(ItemSlot slot, int amountToTransfer)
+    {
+        Item itemToTransfer = HoldingItem;
+        amountToTransfer = DeductItem(amountToTransfer);
+        amountToTransfer -= slot.AddItem(itemToTransfer, amountToTransfer);
+        AddItem(itemToTransfer, amountToTransfer);
     }
 }

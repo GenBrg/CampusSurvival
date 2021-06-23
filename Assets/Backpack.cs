@@ -12,13 +12,18 @@ public class Backpack : MonoBehaviour
     public GameObject UI;
     public ItemSlot[] itemSlots;
 
+    public bool IsOpen
+    {
+        get => UI.activeInHierarchy;
+    }
+
     //private SortedSet<int> emptySlots;
     //private IDictionary<Item, int> inventory;
 
     private void Start()
     {
         UI.SetActive(false);
-
+        
         //emptySlots = new SortedSet<int>();
         //inventory = new Dictionary<Item, int>();
         //for (int i = 0; i < itemSlots.Length; ++i)
@@ -27,12 +32,33 @@ public class Backpack : MonoBehaviour
         //}
     }
 
+    void OpenBackpack()
+    {
+        UI.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0.0f;
+    }
+
+    void CloseBackpack()
+    {
+        UI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1.0f;
+    }
+
     void Update()
     {
         // Open/close backpack
         if (Input.GetButtonDown("Backpack"))
         {
-            UI.SetActive(!UI.activeInHierarchy);
+            if (IsOpen)
+            {
+                CloseBackpack();
+            }
+            else
+            {
+                OpenBackpack();
+            }
         }
     }
 
@@ -55,15 +81,10 @@ public class Backpack : MonoBehaviour
                 continue;
             }
 
-            if (slot.Amount + amount <= item.maxStackSize)
+            amount -= slot.AddItem(item, amount);
+            if (amount == 0)
             {
-                slot.Amount += amount;
                 return 0;
-            } 
-            else
-            {
-                amount -= item.maxStackSize - slot.Amount;
-                slot.Amount = item.maxStackSize;
             }
         }
 
@@ -72,16 +93,10 @@ public class Backpack : MonoBehaviour
         {
             if (slot.IsEmpty)
             {
-                slot.HoldingItem = item;
-                if (amount <= item.maxStackSize)
+                amount -= slot.AddItem(item, amount);
+                if (amount == 0)
                 {
-                    slot.Amount = amount;
                     return 0;
-                }
-                else
-                {
-                    slot.Amount = item.maxStackSize;
-                    amount -= item.maxStackSize;
                 }
             }
         }

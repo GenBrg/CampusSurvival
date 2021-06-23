@@ -28,6 +28,12 @@ public class CharacterMovement : MonoBehaviour
     public float baseLateralSpeed = 5.0f;
 
     private Vector3 velocity;
+    private InputManager input;
+
+    private void Start()
+    {
+        input = FindObjectOfType<InputManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -42,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
         {
             velocity.y = -2f;
 
-            if (Input.GetButtonDown("Jump"))
+            if (input.Jump)
             {
                 velocity.y = Mathf.Sqrt(2.0f * Constants.Gravity * jumpHeight);
 
@@ -52,12 +58,12 @@ public class CharacterMovement : MonoBehaviour
         }
 
         //// Update horizontal movement
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = input.HorizontalInput;
+        float verticalInput = input.VerticalInput;
 
         // Check stance
-        isCrouch = Input.GetButton("Crouch");
-        isSprint = isCrouch ? false : Input.GetButton("Sprint") && 
+        isCrouch = input.Crouch;
+        isSprint = isCrouch ? false : input.Sprint && 
             verticalInput > 0.0f &&
             Vector3.Dot(velocity, transform.forward) > 0.0f;
 
