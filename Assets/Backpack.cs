@@ -42,41 +42,45 @@ public class Backpack : MonoBehaviour
      */
     public int AddItem(Item item, int amount)
     {
+        if (!item || amount <= 0)
+        {
+            return 0;
+        }
+
         // Fill stackable slots
         foreach (ItemSlot slot in itemSlots)
         {
-            if (!slot.item || slot.amount == 0 || slot.item != item)
+            if (slot.IsEmpty || slot.HoldingItem != item)
             {
                 continue;
             }
 
-            if (slot.amount + amount <= item.maxStackSize)
+            if (slot.Amount + amount <= item.maxStackSize)
             {
-                slot.amount += amount;
+                slot.Amount += amount;
                 return 0;
             } 
             else
             {
-                slot.amount = item.maxStackSize;
-                amount -= item.maxStackSize - slot.amount;
+                amount -= item.maxStackSize - slot.Amount;
+                slot.Amount = item.maxStackSize;
             }
         }
 
         // Fill empty slots
         foreach (ItemSlot slot in itemSlots)
         {
-            if (!slot.item)
+            if (slot.IsEmpty)
             {
-                slot.item = item;
+                slot.HoldingItem = item;
                 if (amount <= item.maxStackSize)
                 {
-                    
-                    slot.amount = amount;
+                    slot.Amount = amount;
                     return 0;
                 }
                 else
                 {
-                    slot.amount = item.maxStackSize;
+                    slot.Amount = item.maxStackSize;
                     amount -= item.maxStackSize;
                 }
             }

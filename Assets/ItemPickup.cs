@@ -30,8 +30,12 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.GetComponent<CharacterMovement>())
         {
-            backpack.AddItem(item, amount);
-            Destroy(gameObject);
+            amount = backpack.AddItem(item, amount);
+
+            if (amount == 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
