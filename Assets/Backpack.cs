@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /**
  * Player backpack UI and backend code
@@ -11,6 +12,9 @@ public class Backpack : MonoBehaviour
 {
     public GameObject UI;
     public ItemSlot[] itemSlots;
+
+    public UnityAction onBackPackOpen;
+    public UnityAction onBackPackClose;
 
     public bool IsOpen
     {
@@ -37,6 +41,8 @@ public class Backpack : MonoBehaviour
         UI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0.0f;
+
+        onBackPackOpen();
     }
 
     void CloseBackpack()
@@ -44,6 +50,8 @@ public class Backpack : MonoBehaviour
         UI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1.0f;
+
+        onBackPackClose();
     }
 
     void Update()

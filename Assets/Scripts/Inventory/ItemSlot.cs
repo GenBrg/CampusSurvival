@@ -49,6 +49,9 @@ public class ItemSlot : MonoBehaviour
             {
                 holdingItem = value;
                 itemIcon.sprite = value.icon;
+                Color c = itemIcon.color;
+                c.a = 1.0f;
+                itemIcon.color = c;
             }
         }
     }
@@ -69,6 +72,10 @@ public class ItemSlot : MonoBehaviour
         holdingItem = null;
         itemIcon.sprite = null;
         amountText.text = "";
+
+        Color c = itemIcon.color;
+        c.a = 0.0f;
+        itemIcon.color = c;
     }
 
     private void Awake()
@@ -124,11 +131,21 @@ public class ItemSlot : MonoBehaviour
         // TODO Project items from player
     }
 
+    public void DropAll()
+    {
+        Drop(Amount);
+    }
+
     public void TransferTo(ItemSlot slot, int amountToTransfer)
     {
         Item itemToTransfer = HoldingItem;
         amountToTransfer = DeductItem(amountToTransfer);
         amountToTransfer -= slot.AddItem(itemToTransfer, amountToTransfer);
         AddItem(itemToTransfer, amountToTransfer);
+    }
+
+    public void TransferAllTo(ItemSlot slot)
+    {
+        TransferTo(slot, Amount);
     }
 }
