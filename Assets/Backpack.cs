@@ -42,7 +42,10 @@ public class Backpack : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0.0f;
 
-        onBackPackOpen();
+        if (onBackPackOpen != null)
+        {
+            onBackPackOpen();
+        }
     }
 
     void CloseBackpack()
@@ -51,7 +54,10 @@ public class Backpack : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1.0f;
 
-        onBackPackClose();
+        if (onBackPackClose != null)
+        {
+            onBackPackClose();
+        }
     }
 
     void Update()

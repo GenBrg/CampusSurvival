@@ -10,11 +10,11 @@ public class Hand : MonoBehaviour
     private ItemSlot handSlot;
     private Backpack backpack;
 
-    // Start is called before the first frame update
     void Awake()
     {
-        handSlot = GetComponentInChildren<ItemSlot>();
+        handSlot = GetComponentInChildren<ItemSlot>(true);
         backpack = FindObjectOfType<Backpack>();
+
         handSlot.gameObject.SetActive(false);
 
         backpack.onBackPackOpen += () =>
