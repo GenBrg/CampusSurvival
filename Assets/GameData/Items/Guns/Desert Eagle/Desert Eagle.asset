@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e501b35fa025344d9f1da43660d0795, type: 3}
   m_Name: Desert Eagle
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Desert Eagle
+  description: Pistol
   icon: {fileID: 0}
-  maxStackSize: 0
-  model: {fileID: 0}
-  magazineSize: 0
-  damage: 0
-  fireInterval: 0
-  semiAuto: 0
-  muzzleOffset: {fileID: 0}
-  muzzleFlash: {fileID: 0}
-  bullet: {fileID: 0}
+  maxStackSize: 1
+  model: {fileID: 2853843883377851847, guid: 0e97fd3738263074eae9f7dd195cc09d, type: 3}
+  magazineSize: 7
+  damage: 30
+  fireInterval: 0.5
+  semiAuto: 1
+  Ammo: {fileID: 11400000, guid: 9d951217a145b174abdcdee1c03fd40a, type: 2}

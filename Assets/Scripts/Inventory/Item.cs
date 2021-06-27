@@ -23,6 +23,11 @@ public class Item : IItem
 
     public override bool Equals(object other)
     {
+        if (other is ItemPrototype)
+        {
+            return other == prototype;
+        }
+
         if (!(other is Item))
         {
             return false;

@@ -88,9 +88,9 @@ public class Backpack : MonoBehaviour
         }
     }
 
-    public bool UseItem(string itemName)
+    public bool UseItem(ItemPrototype item)
     {
-        ItemSlot slot = FindSlot(itemName);
+        ItemSlot slot = FindSlot(item);
 
         if (slot)
         {
@@ -103,11 +103,11 @@ public class Backpack : MonoBehaviour
         }
     }
 
-    public ItemSlot FindSlot(string itemName)
+    public ItemSlot FindSlot(ItemPrototype item)
     {
         foreach (ItemSlot slot in itemSlots)
         {
-            if (!slot.IsEmpty && slot.HoldingItem.Name == itemName)
+            if (!slot.IsEmpty && slot.HoldingItem.Equals(item))
             {
                 return slot;
             }

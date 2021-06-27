@@ -12,6 +12,10 @@ public class Gun : IItem
     private Backpack backpack;
     private RateLimiter fireRateLimiter;
 
+    private GameObject model;
+    private Transform muzzleOffset;
+    private ParticleSystem muzzleFlash;
+
     public int Ammo
     {
         get => ammo;
@@ -35,14 +39,19 @@ public class Gun : IItem
         this.prototype = prototype;
         ammo = initialAmmo;
 
-        input = InputManager.Instance;
-        backpack = Backpack.Instance;
         fireRateLimiter = new RateLimiter(prototype.fireInterval, Fire);
     }
 
     public override void OnEquip()
     {
         base.OnEquip();
+
+        model = GameObject.Instantiate(prototype.model, GameObject.Find("Weapon Socket").GetComponent<Transform>());
+        muzzleOffset = model.transform.Find("Muzzle");
+        muzzleFlash = model.GetComponentInChildren<ParticleSystem>();
+
+        input = Object.FindObjectOfType<InputManager>();
+        backpack = Object.FindObjectOfType<Backpack>();
     }
 
     void Reload()
@@ -52,8 +61,9 @@ public class Gun : IItem
             return;
         }
 
-        if (backpack.UseItem(ammoName))
+        if (backpack.UseItem(prototype.Ammo))
         {
+            // TODO Play reload sound
             Ammo = prototype.magazineSize;
         }
     }
@@ -72,9 +82,9 @@ public class Gun : IItem
 
         --Ammo;
 
-        prototype.muzzleFlash.Play();
-        // Audio
-        GameObject.Instantiate(prototype.bullet, prototype.muzzleOffset.position, prototype.muzzleOffset.rotation);
+        muzzleFlash.Play();
+        // TODO play fire sound
+        GameObject.Instantiate(prototype.Ammo.bullet, muzzleOffset.position, muzzleOffset.rotation);
     }
 
     void Aim()
@@ -108,5 +118,10 @@ public class Gun : IItem
     public override void OnUnequip()
     {
         base.OnUnequip();
+
+        GameObject.Destroy(model);
+        model = null;
+        muzzleOffset = null;
+        muzzleFlash = null;
     }
 }

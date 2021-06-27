@@ -10,7 +10,5 @@ public class GunPrototype : ItemPrototype
     public float fireInterval;
     public bool semiAuto;
 
-    public Transform muzzleOffset;
-    public ParticleSystem muzzleFlash;
-    public GameObject bullet;
+    public AmmoPrototype Ammo;
 } 
