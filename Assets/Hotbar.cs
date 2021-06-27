@@ -26,11 +26,22 @@ public class Hotbar : MonoBehaviour
             return;
         }
 
-        index = idx;
+        
         selectionBox.rectTransform.anchoredPosition = new Vector2(idx * kSlotWidth, 0.0f);
 
+        // Unequip item
+        if (!itemSlots[index].IsEmpty)
+        {
+            itemSlots[index].HoldingItem.OnUnequip();
+        }
+
         // Equip item
-        // itemSlots[idx]
+        if (!itemSlots[idx].IsEmpty)
+        {
+            itemSlots[idx].HoldingItem.OnEquip();
+        }
+
+        index = idx;
     }
 
     // Positive a mod b
@@ -58,6 +69,11 @@ public class Hotbar : MonoBehaviour
         else if (Input.mouseScrollDelta.y > 0.0f)
         {
             SwitchToIndex(PositiveMod(index - 1, kHotbarSize));
+        }
+
+        if (!itemSlots[index].IsEmpty)
+        {
+            itemSlots[index].HoldingItem.OnHandUpdate();
         }
     }
 }

@@ -5,6 +5,17 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private Backpack backpack;
+    private static InputManager instance;
+
+    public static InputManager Instance
+    {
+        get => instance;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public bool InGame
     {
@@ -14,9 +25,27 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public bool Fire
+    public bool Reload
+    {
+        get
+        {
+            return InGame && Input.GetButton("Reload");
+        }
+    }
+
+    public bool AutoFire1
     {
         get => InGame && Input.GetButton("Fire1");
+    }
+
+    public bool SemiFire1
+    {
+        get => InGame && Input.GetButtonDown("Fire1");
+    }
+
+    public bool Fire2
+    {
+        get => InGame && Input.GetButton("Fire2");
     }
 
     public bool Jump

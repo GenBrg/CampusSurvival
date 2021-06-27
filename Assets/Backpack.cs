@@ -16,6 +16,13 @@ public class Backpack : MonoBehaviour
     public UnityAction onBackPackOpen;
     public UnityAction onBackPackClose;
 
+    private static Backpack instance;
+
+    public static Backpack Instance
+    {
+        get => instance;
+    }
+
     public bool IsOpen
     {
         get => UI.activeInHierarchy;
@@ -23,6 +30,11 @@ public class Backpack : MonoBehaviour
 
     //private SortedSet<int> emptySlots;
     //private IDictionary<Item, int> inventory;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -76,13 +88,41 @@ public class Backpack : MonoBehaviour
         }
     }
 
+    public bool UseItem(string itemName)
+    {
+        ItemSlot slot = FindSlot(itemName);
+
+        if (slot)
+        {
+            int itemUsed = slot.DeductItem(1);
+            return itemUsed == 1;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public ItemSlot FindSlot(string itemName)
+    {
+        foreach (ItemSlot slot in itemSlots)
+        {
+            if (!slot.IsEmpty && slot.HoldingItem.Name == itemName)
+            {
+                return slot;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * @brief Add item stack to backpack.
      * @return amount remain in the stack.
      */
-    public int AddItem(Item item, int amount)
+    public int AddItem(IItem item, int amount)
     {
-        if (!item || amount <= 0)
+        if (item == null || amount <= 0)
         {
             return 0;
         }

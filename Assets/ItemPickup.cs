@@ -9,21 +9,28 @@ using UnityEngine;
  */
 public class ItemPickup : MonoBehaviour
 {
-    public Item item;
+    public ItemPrototype prototype;
     public int amount;
 
     private Backpack backpack;
+    private IItem item;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         backpack = FindObjectOfType<Backpack>();
+        item = SpawnItem();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    protected virtual IItem SpawnItem()
+    {
+        return new Item(prototype);
     }
 
     private void OnTriggerEnter(Collider other)

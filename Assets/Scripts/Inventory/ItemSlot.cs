@@ -12,9 +12,8 @@ using UnityEngine;
  */
 public class ItemSlot : MonoBehaviour
 {
-    public Item holdingItem;
+    public IItem holdingItem;
     public int amount;
-    public bool enabled;
 
     private Image itemIcon;
     private TextMeshProUGUI amountText;
@@ -36,19 +35,19 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    public Item HoldingItem
+    public IItem HoldingItem
     {
         get => holdingItem;
         set
         {
-            if (!value)
+            if (value == null)
             {
                 ClearSlot();
             }
             else
             {
                 holdingItem = value;
-                itemIcon.sprite = value.icon;
+                itemIcon.sprite = value.Icon;
                 Color c = itemIcon.color;
                 c.a = 1.0f;
                 itemIcon.color = c;
@@ -58,12 +57,12 @@ public class ItemSlot : MonoBehaviour
 
     public bool IsEmpty
     {
-        get => !holdingItem || amount == 0;
+        get => holdingItem == null || amount == 0;
     }
 
     public bool IsFull
     {
-        get => !IsEmpty && (HoldingItem.maxStackSize == Amount);
+        get => !IsEmpty && (HoldingItem.MaxStackSize == Amount);
     }
 
     private void ClearSlot()
@@ -109,15 +108,15 @@ public class ItemSlot : MonoBehaviour
     }
 
     // @return amount actually added to the item slot
-    public int AddItem(Item item, int amountToAdd)
+    public int AddItem(IItem item, int amountToAdd)
     {
-        if ((!IsEmpty && item != HoldingItem) || amountToAdd == 0 || !item)
+        if ((!IsEmpty && !item.Equals(HoldingItem)) || amountToAdd == 0 || item == null)
         {
             return 0;
         }
 
         HoldingItem = item;
-        amountToAdd = Mathf.Min(item.maxStackSize - Amount, amountToAdd);
+        amountToAdd = Mathf.Min(item.MaxStackSize - Amount, amountToAdd);
         Amount += amountToAdd;
 
         return amountToAdd;
@@ -125,7 +124,7 @@ public class ItemSlot : MonoBehaviour
 
     public void Drop(int amountToDrop)
     {
-        Item itemToDrop = HoldingItem;
+        IItem itemToDrop = HoldingItem;
         amountToDrop = DeductItem(amountToDrop);
 
         // TODO Project items from player
@@ -138,7 +137,7 @@ public class ItemSlot : MonoBehaviour
 
     public void TransferTo(ItemSlot slot, int amountToTransfer)
     {
-        Item itemToTransfer = HoldingItem;
+        IItem itemToTransfer = HoldingItem;
         amountToTransfer = DeductItem(amountToTransfer);
         amountToTransfer -= slot.AddItem(itemToTransfer, amountToTransfer);
         AddItem(itemToTransfer, amountToTransfer);

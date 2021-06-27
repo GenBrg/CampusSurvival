@@ -38,7 +38,7 @@ public class Shoot : MonoBehaviour
             transform.LookAt(transform.parent.position + transform.parent.forward * range);
         }
 
-        if (input.Fire)
+        if (input.AutoFire1)
         {
             fireRateLimiter.Invoke();
         }
