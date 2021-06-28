@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public class Gun : IItem
 {
@@ -17,11 +17,18 @@ public class Gun : IItem
     private ParticleSystem muzzleFlash;
     private Transform cameraTransform;
 
+    private UnityAction onAmmoNumChange;
+    private HUD hud;
+
     public int Ammo
     {
         get => ammo;
         set {
             ammo = value;
+            if (onAmmoNumChange != null)
+            {
+                onAmmoNumChange();
+            }
         }
     }
 
@@ -48,6 +55,16 @@ public class Gun : IItem
         this.prototype = prototype;
         ammo = initialAmmo;
 
+        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
+        input = Object.FindObjectOfType<InputManager>();
+        backpack = Object.FindObjectOfType<Backpack>();
+        hud = Object.FindObjectOfType<HUD>();
+
+        onAmmoNumChange += () =>
+        {
+            hud.ShowAmmo(ammo, prototype.magazineSize);
+        };
+
         fireRateLimiter = new RateLimiter(prototype.fireInterval, Fire);
     }
 
@@ -58,10 +75,11 @@ public class Gun : IItem
         model = GameObject.Instantiate(prototype.model, GameObject.Find("Weapon Socket").GetComponent<Transform>());
         muzzleOffset = model.transform.Find("Muzzle");
         muzzleFlash = model.GetComponentInChildren<ParticleSystem>();
-        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
 
-        input = Object.FindObjectOfType<InputManager>();
-        backpack = Object.FindObjectOfType<Backpack>();
+        if (onAmmoNumChange != null)
+        {
+            onAmmoNumChange();
+        }
     }
 
     void Reload()
@@ -143,5 +161,7 @@ public class Gun : IItem
         model = null;
         muzzleOffset = null;
         muzzleFlash = null;
+
+        hud.HideAmmo();
     }
 }
