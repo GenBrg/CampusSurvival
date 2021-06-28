@@ -109,9 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94aa5d1ccee23547a99c9bbf2d14e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 1
-  lifeTime: 3
-  bulletImpact: {fileID: 1880017662324678836, guid: 5dfeaaa4345de9b4c86015a1123455b7, type: 3}
+  prototype: {fileID: 11400000, guid: 9d951217a145b174abdcdee1c03fd40a, type: 2}
 --- !u!96 &802643600
 TrailRenderer:
   serializedVersion: 2

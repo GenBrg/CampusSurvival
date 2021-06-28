@@ -15,6 +15,7 @@ public class Gun : IItem
     private GameObject model;
     private Transform muzzleOffset;
     private ParticleSystem muzzleFlash;
+    private Transform cameraTransform;
 
     public int Ammo
     {
@@ -34,6 +35,14 @@ public class Gun : IItem
 
     public override GameObject Model => prototype.model;
 
+    public float Range
+    {
+        get
+        {
+            return prototype.Ammo.initialSpeed * prototype.Ammo.lifeTime;
+        }
+    }
+
     public Gun(GunPrototype prototype, int initialAmmo)
     {
         this.prototype = prototype;
@@ -49,6 +58,7 @@ public class Gun : IItem
         model = GameObject.Instantiate(prototype.model, GameObject.Find("Weapon Socket").GetComponent<Transform>());
         muzzleOffset = model.transform.Find("Muzzle");
         muzzleFlash = model.GetComponentInChildren<ParticleSystem>();
+        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
 
         input = Object.FindObjectOfType<InputManager>();
         backpack = Object.FindObjectOfType<Backpack>();
@@ -95,6 +105,16 @@ public class Gun : IItem
     public override void OnHandUpdate()
     {
         base.OnHandUpdate();
+
+        bool hit = Physics.Raycast(new Ray(cameraTransform.position, cameraTransform.forward), out RaycastHit hitInfo, Range);
+        if (hit)
+        {
+            model.transform.LookAt(hitInfo.point);
+        }
+        else
+        {
+            model.transform.LookAt(cameraTransform.position + cameraTransform.forward * Range);
+        }
 
         if (input.Reload)
         {

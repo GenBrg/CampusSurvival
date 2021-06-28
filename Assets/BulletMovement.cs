@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
-    public float initialSpeed = 100.0f;
-    public float lifeTime = 3.0f;
+    public AmmoPrototype prototype;
 
-    public GameObject bulletImpact;
+    private float initialSpeed = 100.0f;
+    private float lifeTime = 3.0f;
+    private GameObject bulletImpact;
 
     private Vector3 velocity;
 
     // Start is called before the first frame update
     void Start()
     {
+        initialSpeed = prototype.initialSpeed;
+        lifeTime = prototype.lifeTime;
+        bulletImpact = prototype.bulletImpact;
         velocity = transform.forward * initialSpeed;
     }
 
