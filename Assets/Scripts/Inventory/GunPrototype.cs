@@ -6,7 +6,6 @@ using UnityEngine;
 public class GunPrototype : ItemPrototype
 {
     public int magazineSize;
-    public float damage;
     public float fireInterval;
     public bool semiAuto;
 

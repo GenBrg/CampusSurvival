@@ -6,11 +6,19 @@ public class BulletMovement : MonoBehaviour
 {
     public AmmoPrototype prototype;
 
+    private GameObject _owner;
+
     private float initialSpeed = 100.0f;
     private float lifeTime = 3.0f;
     private GameObject bulletImpact;
 
     private Vector3 velocity;
+
+    public GameObject Owner
+    {
+        get => _owner;
+        set => _owner = value;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +44,12 @@ public class BulletMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         Instantiate(bulletImpact, transform.position, transform.rotation);
+        Damagable[] damagables = other.gameObject.GetComponents<Damagable>();
+        foreach (Damagable damagable in damagables)
+        {
+            damagable.OnDamage(prototype.damage);
+        }
         Destroy(gameObject);
     }
 }

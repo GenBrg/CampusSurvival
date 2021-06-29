@@ -8,6 +8,7 @@ public class AmmoPrototype : ItemPrototype
     public GameObject bullet;
     public float initialSpeed = 100.0f;
     public float lifeTime = 3.0f;
+    public float damage;
 
     public GameObject bulletImpact;
 }

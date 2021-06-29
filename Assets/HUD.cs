@@ -14,6 +14,12 @@ public class HUD : MonoBehaviour
     {
         HideHint();
         HideAmmo();
+
+        Health playerHealth = GameObject.Find("Player").GetComponent<Health>();
+        playerHealth.onHealthChange += (float currentHealth, float maxHealth) =>
+        {
+            SetHealth((int)currentHealth, (int)maxHealth);
+        };
     }
 
     public void ShowHint(string text)

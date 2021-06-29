@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: .50 AE Ammo
   description: For Desert Eagle
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9ea8a7533560f924c844649bcf698430, type: 3}
   maxStackSize: 10
   model: {fileID: 8413069170581893141, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}
   bullet: {fileID: 3862041458828630094, guid: a001db55913da2c4686efa0764c7fff2, type: 3}
+  initialSpeed: 1
+  lifeTime: 20
+  bulletImpact: {fileID: 1880017662324678836, guid: 5dfeaaa4345de9b4c86015a1123455b7, type: 3}

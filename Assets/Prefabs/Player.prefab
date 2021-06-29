@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b87cd109e50344aa6628222e8dcb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 1000
+  sensitivity: 100
   playerTransform: {fileID: 6745234865869612140}
 --- !u!1 &6745234865869612138
 GameObject:
@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 6745234865869612140}
   - component: {fileID: 6745234865869612139}
   - component: {fileID: 6745234865869612141}
+  - component: {fileID: 480797810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -263,6 +264,20 @@ MonoBehaviour:
   fraction: 20
   baseMaxSpeed: 5
   baseLateralSpeed: 5
+--- !u!114 &480797810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6745234865869612138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16f311fa49b38c4f963e03dcdbdc660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  currentHealth: 30
 --- !u!1 &6745234866038755788
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +317,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7866057689928623189}
-  - component: {fileID: 7866057689928623186}
   m_Layer: 0
   m_Name: Weapon Socket
   m_TagString: Untagged
@@ -324,20 +338,3 @@ Transform:
   m_Father: {fileID: 6745234865549446417}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7866057689928623186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7866057689928623188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8379f449e47e4544ae19bc2620effa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireInterval: 0.1
-  muzzle: {fileID: 0}
-  range: 100
-  bullet: {fileID: 3862041458828630094, guid: a001db55913da2c4686efa0764c7fff2, type: 3}
-  muzzleFlash: {fileID: 0}
