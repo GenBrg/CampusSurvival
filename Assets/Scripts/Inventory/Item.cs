@@ -25,7 +25,7 @@ public class Item : IItem
     {
         if (other is ItemPrototype)
         {
-            return other == prototype;
+            return other.Equals(prototype);
         }
 
         if (!(other is Item))

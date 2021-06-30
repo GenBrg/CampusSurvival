@@ -44,6 +44,7 @@ public class BulletMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         Instantiate(bulletImpact, transform.position, transform.rotation);
         Damagable[] damagables = other.gameObject.GetComponents<Damagable>();
         foreach (Damagable damagable in damagables)

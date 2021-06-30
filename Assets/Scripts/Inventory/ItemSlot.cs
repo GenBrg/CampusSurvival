@@ -67,6 +67,11 @@ public class ItemSlot : MonoBehaviour
 
     private void ClearSlot()
     {
+        if (this == Hotbar.Instance.CurrentSlot && HoldingItem != null)
+        {
+            HoldingItem.OnUnequip();
+        }
+
         amount = 0;
         holdingItem = null;
         itemIcon.sprite = null;
@@ -115,6 +120,11 @@ public class ItemSlot : MonoBehaviour
             return 0;
         }
 
+        if (IsEmpty && this == Hotbar.Instance.CurrentSlot)
+        {
+            item.OnEquip();
+        }
+
         HoldingItem = item;
         amountToAdd = Mathf.Min(item.MaxStackSize - Amount, amountToAdd);
         Amount += amountToAdd;
@@ -128,6 +138,7 @@ public class ItemSlot : MonoBehaviour
         amountToDrop = DeductItem(amountToDrop);
 
         // TODO Project items from player
+
     }
 
     public void DropAll()

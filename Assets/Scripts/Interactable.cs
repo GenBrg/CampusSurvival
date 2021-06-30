@@ -11,28 +11,37 @@ public class Interactable : MonoBehaviour
     public bool showHint;
     public UnityAction onInteract;
 
-    private TextMeshProUGUI hintText;
-
+    private HUD hud;
 
     private void Awake()
     {
-        hintText = GameObject.Find("Hint").GetComponent<TextMeshProUGUI>();
+        hud = GameObject.Find("HUD").GetComponent<HUD>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (showHint && hint != null)
+        if (other.gameObject.name == "Player" && showHint && hint != null)
         {
-            hintText.gameObject.SetActive(true);
-            hintText.text = hint;
+            hud.ShowHint("Press '" + interactKey + "' to interact");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            hud.HideHint();
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(interactKey) && onInteract != null)
+        if (other.gameObject.name == "Player" && Input.GetKeyDown(interactKey))
         {
-            onInteract();
+            if (onInteract != null)
+            {
+                onInteract();
+            }
         }
     }
 }

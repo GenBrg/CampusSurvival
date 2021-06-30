@@ -120,7 +120,7 @@ public class Gun : IItem
 
     }
 
-    public override void OnHandUpdate()
+    public override bool OnHandUpdate()
     {
         base.OnHandUpdate();
 
@@ -151,6 +151,8 @@ public class Gun : IItem
         {
             Aim();
         }
+
+        return false;
     }
 
     public override void OnUnequip()

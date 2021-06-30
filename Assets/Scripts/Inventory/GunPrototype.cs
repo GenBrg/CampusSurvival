@@ -9,5 +9,5 @@ public class GunPrototype : ItemPrototype
     public float fireInterval;
     public bool semiAuto;
 
-    public AmmoPrototype Ammo;
+    public AmmoPrototype Ammo; 
 } 

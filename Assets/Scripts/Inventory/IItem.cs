@@ -39,9 +39,9 @@ public abstract class IItem
 
     }
 
-    public virtual void OnHandUpdate()
+    public virtual bool OnHandUpdate()
     {
-        
+        return false;
     }
 
     public virtual void OnUnequip()

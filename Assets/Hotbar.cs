@@ -9,14 +9,26 @@ public class Hotbar : MonoBehaviour
     public ItemSlot[] itemSlots;
     public Image selectionBox;
 
+    private static Hotbar _instance;
+
     private int index;
     private const int kHotbarSize = 10;
     private const int kSlotWidth = 110;
     
+    public ItemSlot CurrentSlot
+    {
+        get => itemSlots[index];
+    }
+
+    public static Hotbar Instance
+    {
+        get => _instance;
+    }
 
     void Awake()
     {
         index = 0;
+        _instance = this;
     }
 
     void SwitchToIndex(int idx)
@@ -30,9 +42,9 @@ public class Hotbar : MonoBehaviour
         selectionBox.rectTransform.anchoredPosition = new Vector2(idx * kSlotWidth, 0.0f);
 
         // Unequip item
-        if (!itemSlots[index].IsEmpty)
+        if (!CurrentSlot.IsEmpty)
         {
-            itemSlots[index].HoldingItem.OnUnequip();
+            CurrentSlot.HoldingItem.OnUnequip();
         }
 
         // Equip item
@@ -62,6 +74,11 @@ public class Hotbar : MonoBehaviour
             }
         }
 
+        if (Input.GetButton("Drop"))
+        {
+            CurrentSlot.Drop(1);
+        }
+
         if (Input.mouseScrollDelta.y < 0.0f)
         {
             SwitchToIndex(PositiveMod(index + 1, kHotbarSize));
@@ -71,9 +88,9 @@ public class Hotbar : MonoBehaviour
             SwitchToIndex(PositiveMod(index - 1, kHotbarSize));
         }
 
-        if (!itemSlots[index].IsEmpty)
+        if (!CurrentSlot.IsEmpty)
         {
-            itemSlots[index].HoldingItem.OnHandUpdate();
+            CurrentSlot.HoldingItem.OnHandUpdate();
         }
     }
 }
