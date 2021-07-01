@@ -88,6 +88,48 @@ public class Backpack : MonoBehaviour
         }
     }
 
+    public bool TryUseItem(ItemPrototype item, int amountToUse, bool useAnyway)
+    {
+        if (amountToUse == 0)
+        {
+            return true;
+        }
+
+        int amountInInventory = 0;
+        Dictionary<ItemSlot, int> slotsToUse = new Dictionary<ItemSlot, int>();
+        bool succeed = false;
+
+        // Scan backpack
+        foreach (ItemSlot slot in itemSlots)
+        {
+            if (!slot.IsEmpty && slot.HoldingItem.Equals(item))
+            {
+                if (amountInInventory + slot.Amount >= amountToUse)
+                {
+                    slotsToUse[slot] = amountToUse - amountInInventory;
+                    succeed = true;
+                    break;
+                } 
+                else
+                {
+                    slotsToUse[slot] = slot.Amount;
+                    amountInInventory += slot.Amount;
+                }
+            }
+        }
+
+        // Use items
+        if (succeed || useAnyway)
+        {
+            foreach (var entry in slotsToUse)
+            {
+                entry.Key.DeductItem(entry.Value);
+            }
+        }
+
+        return succeed;
+    }
+
     public bool UseItem(ItemPrototype item)
     {
         ItemSlot slot = FindSlot(item);

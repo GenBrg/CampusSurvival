@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6745234865045866397}
   - component: {fileID: 6745234865045866399}
   - component: {fileID: 6745234865045866398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6745234865549446416}
   - component: {fileID: 6745234865549446383}
   - component: {fileID: 6745234865549446418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -192,9 +192,10 @@ GameObject:
   - component: {fileID: 6745234865869612139}
   - component: {fileID: 6745234865869612141}
   - component: {fileID: 480797810}
-  m_Layer: 0
+  - component: {fileID: 480797807}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,6 +279,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 30
+--- !u!114 &480797807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6745234865869612138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42626aa6adc4ac74bb86234989235e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  structureGhost: {fileID: 0}
+  structure: {fileID: 0}
+  structureGhostValidMaterial: {fileID: 2100000, guid: b7564396e46242945b0efef5bcf1a14a, type: 2}
+  structureGhostInvalidMaterial: {fileID: 2100000, guid: 7a85987ace1e8fe4d92854c215a1f2a9, type: 2}
 --- !u!1 &6745234866038755788
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6745234866038755789}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7866057689928623189}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
