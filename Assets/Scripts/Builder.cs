@@ -132,31 +132,29 @@ public class Builder : MonoBehaviour
         if (raycastHits.Count == 0)
         {
             HideGhost();
-        } 
+        }
         else
         {
-            //string s = "Before: \n";
-            //foreach (RaycastHit hit in raycastHits)
-            //{
-            //    s += hit.distance + " ";
-            //}
-            //print(s);
-
-            // TODO Raycast order issus
             raycastHits.RemoveAll((hit) => hit.transform.root == structureGhost.transform);
-            raycastHits.Sort((hit1, hit2) => (int)(hit1.distance - hit2.distance));
-
-            //s = "After: \n";
-            //foreach (RaycastHit hit in raycastHits)
-            //{
-            //    s += hit.distance + " ";
-            //}
-            //print(s);
+            raycastHits.Sort((hit1, hit2) => {
+                float dist = hit1.distance - hit2.distance;
+                if (dist < 0.0f)
+                {
+                    return -1;
+                }
+                else if (dist > 0.0f)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            });
 
             if (raycastHits.Count > 0 && raycastHits[0].collider.gameObject.layer == groundLayer
                 && Vector3.Angle(Vector3.up, raycastHits[0].normal) <= kMaxAllowedTiltAngle)
             {
-                print(raycastHits[0].collider.name);
                 ShowGhost(raycastHits[0]);
             }
             else

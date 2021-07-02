@@ -8,6 +8,11 @@ public class ActiveCollider : MonoBehaviour
 {
     public bool isColliding;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        isColliding = true;
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         isColliding = true;
