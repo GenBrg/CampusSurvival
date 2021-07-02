@@ -163,7 +163,7 @@ public class Builder : MonoBehaviour
             }
         }
 
-        if (locationValid && Input.GetButton("Rotate"))
+        if (structureGhost.activeInHierarchy && Input.GetButton("Rotate"))
         {
             rotation += (Time.deltaTime * kRotateSpeed) % 360.0f;
         }
