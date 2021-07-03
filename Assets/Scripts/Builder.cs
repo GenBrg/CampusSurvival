@@ -23,7 +23,6 @@ public class Builder : MonoBehaviour
     private Camera playerCamera;
     private bool locationValid;
     private Backpack backpack;
-    private Rigidbody structureGhostRigidbody;
 
     public bool Active
     {
@@ -36,7 +35,6 @@ public class Builder : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
 
         // TODO Instantiate upon building UI button
-        StartBuild(structureGhost, structure);
 
         groundLayer = LayerMask.NameToLayer("Ground");
         backpack = Backpack.Instance;
@@ -46,7 +44,6 @@ public class Builder : MonoBehaviour
     {
         this.structureGhost = Instantiate(structureGhost);
         this.structure = structure;
-        structureGhostRigidbody = structureGhost.GetComponent<Rigidbody>();
     }
 
     void CancelBuild()
@@ -98,10 +95,6 @@ public class Builder : MonoBehaviour
         structureGhost.transform.rotation = Quaternion.FromToRotation(Vector3.up, raycastHit.normal);
         structureGhost.transform.Rotate(Vector3.up, rotation, Space.Self);
 
-        //structureGhostRigidbody.MovePosition(raycastHit.point);
-        //structureGhostRigidbody.MoveRotation(Quaternion.identity);
-
-        // TODO check colliding & color
         if (structureGhost.GetComponent<ActiveCollider>().isColliding)
         {
             locationValid = false;
@@ -176,45 +169,5 @@ public class Builder : MonoBehaviour
         {
             TryBuild();
         }
-
-
-
-        //bool hit = Physics.Raycast(new Ray(playerCamera.transform.position, playerCamera.transform.forward), out RaycastHit raycastHit, kMaxBuildDistance);
-        
-        //if (
-        //    hit
-        //    && raycastHit.collider.gameObject.layer == groundLayer
-        //    && Vector3.Angle(Vector3.up, raycastHit.normal) <= kMaxAllowedTiltAngle
-        //    )
-        //{
-        //    structureGhost.SetActive(true);
-        //    structureGhost.transform.position = raycastHit.point;
-
-        //    if (structureGhost.GetComponent<ActiveCollider>().isColliding)
-        //    {
-        //        structureGhost.SetActive(false);
-        //        return;
-        //    }
-
-        //    // Rotate model
-        //    if (Input.GetButton("Rotate"))
-        //    {
-        //        rotation += (Time.deltaTime * kRotateSpeed) % 360.0f;
-        //    }
-
-        //    // Align model normal
-        //    structureGhost.transform.rotation = Quaternion.identity;
-        //    structureGhost.transform.rotation = Quaternion.FromToRotation(Vector3.up, raycastHit.normal);
-        //    structureGhost.transform.Rotate(Vector3.up, rotation, Space.Self);
-        //}
-        //else
-        //{
-        //    if (hit && raycastHit.collider.transform.root == structureGhost.transform)
-        //    {
-        //        return;
-        //    }
-
-        //    structureGhost.SetActive(false);
-        //}
     }
 }

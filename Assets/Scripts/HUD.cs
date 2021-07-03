@@ -8,6 +8,7 @@ public class HUD : MonoBehaviour
     public TextMeshProUGUI hintUI;
     public TextMeshProUGUI healthUI;
     public TextMeshProUGUI ammoUI;
+    public TextMeshProUGUI timeUI;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +21,11 @@ public class HUD : MonoBehaviour
         {
             SetHealth((int)currentHealth, (int)maxHealth);
         };
+    }
+
+    private void Start()
+    {
+        TimeManager.Instance.onTimeChange += (int day, int hour, int minute) => SetTime(day, hour, minute);
     }
 
     public void ShowHint(string text)
@@ -47,5 +53,10 @@ public class HUD : MonoBehaviour
     public void SetHealth(int currentHealth, int maxHealth)
     {
         healthUI.text = "HP: " + currentHealth + " / " + maxHealth;
+    }
+
+    public void SetTime(int day, int hour, int minute)
+    {
+        timeUI.text = string.Format("Day {0} {1, -2} : {2, 2}", day, hour, minute);
     }
 }

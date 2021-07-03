@@ -22,7 +22,12 @@ public class Health : Damagable
         {
             onHealthChange(currentHealth, maxHealth);
         }
-        onDie();
+
+        if (onDie != null)
+        {
+            onDie();
+        }
+        
         Destroy(gameObject);
     }
 
