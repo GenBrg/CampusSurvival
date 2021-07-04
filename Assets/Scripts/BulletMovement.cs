@@ -49,7 +49,7 @@ public class BulletMovement : MonoBehaviour
         Damagable[] damagables = other.gameObject.GetComponents<Damagable>();
         foreach (Damagable damagable in damagables)
         {
-            damagable.OnDamage(prototype.damage);
+            damagable.OnDamage(prototype.damage, Owner);
         }
         Destroy(gameObject);
     }

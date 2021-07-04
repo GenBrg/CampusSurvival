@@ -112,7 +112,8 @@ public class Gun : IItem
 
         muzzleFlash.Play();
         // TODO play fire sound
-        GameObject.Instantiate(prototype.Ammo.bullet, muzzleOffset.position, muzzleOffset.rotation);
+        GameObject bullet = GameObject.Instantiate(prototype.Ammo.bullet, muzzleOffset.position, muzzleOffset.rotation);
+        bullet.GetComponent<BulletMovement>().Owner = GameObject.Find("Player");
     }
 
     void Aim()

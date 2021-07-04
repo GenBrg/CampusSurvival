@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6708495259473601288}
   - component: {fileID: 8831173615642407959}
   - component: {fileID: -2450251220208655277}
+  - component: {fileID: 8114829385816357928}
   m_Layer: 0
   m_Name: Desert Eagle Pickup
   m_TagString: Untagged
@@ -44,7 +45,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -64,6 +65,19 @@ MonoBehaviour:
   prototype: {fileID: 11400000, guid: c49d24c280cb4c04fbb705fd3f504f6d, type: 2}
   amount: 1
   initialAmmo: 7
+--- !u!65 &8114829385816357928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708495259473601293}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.99145555, z: 2.076602}
+  m_Center: {x: 0, y: 0.0042722374, z: 0.538301}
 --- !u!1001 &2754155631009539633
 PrefabInstance:
   m_ObjectHideFlags: 0

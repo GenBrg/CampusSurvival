@@ -51,9 +51,9 @@ public class Health : Damagable
         }
     }
 
-    public override void OnDamage(float damage)
+    public override void OnDamage(float damage, GameObject attacker)
     {
-        if (damage <= 0.0f)
+        if (damage <= 0.0f || attacker.tag == tag)
         {
             return;
         }
@@ -64,7 +64,7 @@ public class Health : Damagable
         }
 
         if (currentHealth <= damage)
-        {
+        {  
             Die();
             return;
         }

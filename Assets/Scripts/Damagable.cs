@@ -6,5 +6,5 @@ using UnityEngine.Events;
 
 public abstract class Damagable : MonoBehaviour
 {
-    public abstract void OnDamage(float damage);
+    public abstract void OnDamage(float damage, GameObject attacker);
 }
