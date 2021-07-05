@@ -13,4 +13,5 @@ public class ItemPrototype : ScriptableObject
     public Sprite icon;
     public int maxStackSize;
     public GameObject model;
+    public GameObject pickup;
 }

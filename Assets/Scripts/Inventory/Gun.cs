@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Gun : IItem
+[System.Serializable]
+public class Gun : Item
 {
-    public GunPrototype prototype;
     public int ammo;
-
+    
     private InputManager input;
     private Backpack backpack;
     private RateLimiter fireRateLimiter;
@@ -17,8 +17,12 @@ public class Gun : IItem
     private ParticleSystem muzzleFlash;
     private Transform cameraTransform;
 
+    private GunPrototype gunPrototype;
     private UnityAction onAmmoNumChange;
     private HUD hud;
+    private GameObject player;
+    private RandomAudioPlayer fireAudioPlayer;
+    private RandomAudioPlayer reloadAudioPlayer;
 
     public int Ammo
     {
@@ -32,47 +36,38 @@ public class Gun : IItem
         }
     }
 
-    public override string Name => prototype.name;
-
-    public override string Description => prototype.description;
-
-    public override Sprite Icon => prototype.icon;
-
-    public override int MaxStackSize => prototype.maxStackSize;
-
-    public override GameObject Model => prototype.model;
-
     public float Range
     {
         get
         {
-            return prototype.Ammo.initialSpeed * prototype.Ammo.lifeTime;
+            return gunPrototype.Ammo.initialSpeed * gunPrototype.Ammo.lifeTime;
         }
     }
 
-    public Gun(GunPrototype prototype, int initialAmmo)
+    private void Start()
     {
-        this.prototype = prototype;
-        ammo = initialAmmo;
-
-        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
+        gunPrototype = prototype as GunPrototype;
+        
         input = Object.FindObjectOfType<InputManager>();
         backpack = Object.FindObjectOfType<Backpack>();
         hud = Object.FindObjectOfType<HUD>();
 
         onAmmoNumChange += () =>
         {
-            hud.ShowAmmo(ammo, prototype.magazineSize);
+            hud.ShowAmmo(ammo, gunPrototype.magazineSize);
         };
 
-        fireRateLimiter = new RateLimiter(prototype.fireInterval, Fire);
+        fireRateLimiter = new RateLimiter(gunPrototype.fireInterval, Fire);
+        player = GameObject.Find("Player");
     }
 
     public override void OnEquip()
     {
         base.OnEquip();
-
+        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
         model = GameObject.Instantiate(prototype.model, GameObject.Find("Weapon Socket").GetComponent<Transform>());
+        fireAudioPlayer = model.GetComponentsInChildren<RandomAudioPlayer>()[0];
+        reloadAudioPlayer = model.GetComponentsInChildren<RandomAudioPlayer>()[1];
         muzzleOffset = model.transform.Find("Muzzle");
         muzzleFlash = model.GetComponentInChildren<ParticleSystem>();
 
@@ -84,15 +79,15 @@ public class Gun : IItem
 
     void Reload()
     {
-        if (Ammo == prototype.magazineSize)
+        if (Ammo == gunPrototype.magazineSize)
         {
             return;
         }
 
-        if (backpack.UseItem(prototype.Ammo))
+        if (backpack.UseItem(gunPrototype.Ammo))
         {
-            // TODO Play reload sound
-            Ammo = prototype.magazineSize;
+            reloadAudioPlayer.Play();
+            Ammo = gunPrototype.magazineSize;
         }
     }
 
@@ -111,9 +106,10 @@ public class Gun : IItem
         --Ammo;
 
         muzzleFlash.Play();
-        // TODO play fire sound
-        GameObject bullet = GameObject.Instantiate(prototype.Ammo.bullet, muzzleOffset.position, muzzleOffset.rotation);
-        bullet.GetComponent<BulletMovement>().Owner = GameObject.Find("Player");
+
+        GameObject bullet = GameObject.Instantiate(gunPrototype.Ammo.bullet, muzzleOffset.position, muzzleOffset.rotation);
+        bullet.GetComponent<BulletMovement>().Owner = player;
+        fireAudioPlayer.Play();
     }
 
     void Aim()
@@ -140,10 +136,10 @@ public class Gun : IItem
             Reload();
         }
 
-        if (!prototype.semiAuto && input.AutoFire1)
+        if (!gunPrototype.semiAuto && input.AutoFire1)
         {
             Fire();
-        } else if (prototype.semiAuto && input.SemiFire1)
+        } else if (gunPrototype.semiAuto && input.SemiFire1)
         {
             Fire();
         }
@@ -164,6 +160,7 @@ public class Gun : IItem
         model = null;
         muzzleOffset = null;
         muzzleFlash = null;
+        fireAudioPlayer = null;
 
         hud.HideAmmo();
     }

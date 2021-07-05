@@ -162,7 +162,7 @@ public class Backpack : MonoBehaviour
      * @brief Add item stack to backpack.
      * @return amount remain in the stack.
      */
-    public int AddItem(IItem item, int amount)
+    public int AddItem(Item item, int amount)
     {
         if (item == null || amount <= 0)
         {

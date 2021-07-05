@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Hand : MonoBehaviour
 {
+    public GameObject itemDescription;
+    public TextMeshProUGUI itemTitle;
+    public TextMeshProUGUI itemDescriptionText;
+
     private ItemSlot handSlot;
     private Backpack backpack;
 
@@ -38,11 +43,22 @@ public class Hand : MonoBehaviour
         }
 
         handSlot.transform.position = Input.mousePosition;
+        ItemSlot slot = GetSlotUnderMouse(out bool withinBackpack);
 
+        if (slot && slot.HoldingItem != null)
+        {
+            itemDescription.SetActive(true);
+            itemDescription.GetComponent<RectTransform>().position = Input.mousePosition;
+            itemTitle.text = slot.HoldingItem.Name;
+            itemTitle.text = slot.HoldingItem.Description;
+        }
+        else
+        {
+            itemDescription.SetActive(false);
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
-            ItemSlot slot = GetSlotUnderMouse(out bool withinBackpack);
             if (slot)
             {
                 if (handSlot.IsEmpty)
@@ -67,7 +83,6 @@ public class Hand : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            ItemSlot slot = GetSlotUnderMouse(out bool withinBackpack);
             if (slot)
             {
                 if (handSlot.IsEmpty)
@@ -79,7 +94,7 @@ public class Hand : MonoBehaviour
                 {
                     // Merge 1 hand item to the slot
                     handSlot.TransferTo(slot, 1);
-                }
+                }   
             }
             else
             {
@@ -92,7 +107,7 @@ public class Hand : MonoBehaviour
         }
     }
 
-    List<RaycastResult> GetObjectsUnderMouse()
+    public static List<RaycastResult> GetObjectsUnderMouse()
     {
         GraphicRaycaster rayCaster = FindObjectOfType<GraphicRaycaster>();
         PointerEventData eventData = new PointerEventData(EventSystem.current);

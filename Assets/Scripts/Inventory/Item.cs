@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : IItem
+/**
+ * Prototype for an item in the inventory
+ * 
+ * @author Jiasheng Zhou
+ */
+public class Item : MonoBehaviour
 {
     public ItemPrototype prototype;
 
-    public override string Name => prototype.name;
+    public string Name => prototype.name;
 
-    public override string Description => prototype.description;
+    public string Description => prototype.description;
 
-    public override Sprite Icon => prototype.icon;
+    public Sprite Icon => prototype.icon;
 
-    public override int MaxStackSize => prototype.maxStackSize;
+    public int MaxStackSize => prototype.maxStackSize;
 
-    public override GameObject Model => prototype.model;
+    public GameObject Model => prototype.model;
 
-    public Item(ItemPrototype prototype)
-    {
-        this.prototype = prototype;
-    }
+    public GameObject Pickup => prototype.pickup;
+
+    public virtual void OnEquip() { }
+    public virtual bool OnHandUpdate() { return false; }
+    public virtual void OnUnequip() { }
 
     public override bool Equals(object other)
     {

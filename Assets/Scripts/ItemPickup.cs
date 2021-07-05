@@ -9,17 +9,15 @@ using UnityEngine;
  */
 public class ItemPickup : MonoBehaviour
 {
-    public ItemPrototype prototype;
     public int amount;
+    public Item item;
 
     private Backpack backpack;
-    private IItem item;
-
+    
     // Start is called before the first frame update
     void Awake()
     {
         backpack = FindObjectOfType<Backpack>();
-        item = SpawnItem();
     }
 
     // Update is called once per frame
@@ -28,16 +26,11 @@ public class ItemPickup : MonoBehaviour
         
     }
 
-    protected virtual IItem SpawnItem()
-    {
-        return new Item(prototype);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<CharacterMovement>())
         {
-            amount = backpack.AddItem(item, amount);
+            amount = backpack.AddItem(Instantiate(item), amount);
 
             if (amount == 0)
             {

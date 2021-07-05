@@ -30,6 +30,18 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 velocity;
     private InputManager input;
 
+    private static CharacterMovement _instance;
+
+    public static CharacterMovement Instance
+    {
+        get => _instance;
+    }
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     private void Start()
     {
         input = FindObjectOfType<InputManager>();

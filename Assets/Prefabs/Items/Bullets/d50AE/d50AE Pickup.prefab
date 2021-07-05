@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &988688025
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5089234821985679779}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8008502802817243614
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,6 +11,7 @@ GameObject:
   - component: {fileID: 8008502802817243611}
   - component: {fileID: 5238838269761703620}
   - component: {fileID: 2759498648227403365}
+  - component: {fileID: 2742073044922038434}
   m_Layer: 0
   m_Name: d50AE Pickup
   m_TagString: Untagged
@@ -39,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8008502802817243614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8292537, y: 0, z: -0.9192015}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8600687879583044543}
@@ -74,8 +62,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e1b6b37855e3443a2e95556136a4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prototype: {fileID: 11400000, guid: 9d951217a145b174abdcdee1c03fd40a, type: 2}
   amount: 2
+  item: {fileID: 5788888968946117711, guid: 219be534ec34a384abfe7b464a8bc740, type: 3}
+--- !u!65 &2742073044922038434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8008502802817243614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2186089, y: 0.65672565, z: 0.74417996}
+  m_Center: {x: -0.02711463, y: 0.26836348, z: 0}
 --- !u!1001 &3630360677959584182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,7 +86,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 301932793147289348, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4988415825768471049, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}
       propertyPath: m_RootOrder
@@ -137,11 +138,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}
---- !u!1 &5089234821985679779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8413069170581893141, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}
-  m_PrefabInstance: {fileID: 3630360677959584182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8600687879583044543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4988415825768471049, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}

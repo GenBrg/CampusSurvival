@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e1b6b37855e3443a2e95556136a4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prototype: {fileID: 11400000, guid: de1c7617c8e23df4593cea82832c6eef, type: 2}
   amount: 1000
+  item:
+    prototype: {fileID: 11400000, guid: de1c7617c8e23df4593cea82832c6eef, type: 2}
 --- !u!54 &331521918
 Rigidbody:
   m_ObjectHideFlags: 0

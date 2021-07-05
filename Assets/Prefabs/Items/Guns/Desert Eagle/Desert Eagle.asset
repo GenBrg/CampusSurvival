@@ -17,8 +17,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b82c75601d19f0747a7f64e366c66e73, type: 3}
   maxStackSize: 1
   model: {fileID: 2853843883377851847, guid: 0e97fd3738263074eae9f7dd195cc09d, type: 3}
+  pickup: {fileID: 0}
   magazineSize: 7
-  damage: 30
   fireInterval: 0.5
   semiAuto: 1
   Ammo: {fileID: 11400000, guid: 9d951217a145b174abdcdee1c03fd40a, type: 2}

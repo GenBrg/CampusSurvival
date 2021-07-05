@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StructureRequirement : MonoBehaviour
+public class StructureRequirement : ScriptableObject
 {
     public MaterialRequirement[] materialRequirements;
-    public string configPath;
+
 
     private void Awake()
     {
-        //JsonUtility.FromJsonOverwrite(, this);
+
     }
 
     public MaterialRequirement GetMaterialRequirement(int level)

@@ -41,6 +41,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2853843883890348616}
+  - component: {fileID: 7106040400630286953}
+  - component: {fileID: 681917857535164206}
   m_Layer: 0
   m_Name: Muzzle
   m_TagString: Untagged
@@ -63,6 +65,38 @@ Transform:
   m_Father: {fileID: 2853843883377851844}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7106040400630286953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853843883890348619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c96b43417c4dae4ab3e8e974771ddfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 1dfaf919d95fc9b42b18795fe7e7d2a2, type: 3}
+  minVolume: 1
+  maxVolume: 1
+--- !u!114 &681917857535164206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853843883890348619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c96b43417c4dae4ab3e8e974771ddfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 136d1490f347201458fc9d50ed4764cd, type: 3}
+  minVolume: 1
+  maxVolume: 1
 --- !u!1 &5382709951439857983
 GameObject:
   m_ObjectHideFlags: 0

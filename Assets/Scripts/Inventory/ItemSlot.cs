@@ -12,11 +12,15 @@ using UnityEngine;
  */
 public class ItemSlot : MonoBehaviour
 {
-    public IItem holdingItem;
+    [SerializeReference]
+    public Item holdingItem;
     public int amount;
 
     private Image itemIcon;
     private TextMeshProUGUI amountText;
+
+    private const float dropSpeed = 3.0f;
+    private const float dropOffset = 1.0f;
 
     public int Amount
     {
@@ -35,7 +39,7 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    public IItem HoldingItem
+    public Item HoldingItem
     {
         get => holdingItem;
         set
@@ -113,7 +117,7 @@ public class ItemSlot : MonoBehaviour
     }
 
     // @return amount actually added to the item slot
-    public int AddItem(IItem item, int amountToAdd)
+    public int AddItem(Item item, int amountToAdd)
     {
         if ((!IsEmpty && !item.Equals(HoldingItem)) || amountToAdd == 0 || item == null)
         {
@@ -134,11 +138,22 @@ public class ItemSlot : MonoBehaviour
 
     public void Drop(int amountToDrop)
     {
-        IItem itemToDrop = HoldingItem;
+        Item itemToDrop = HoldingItem;
         amountToDrop = DeductItem(amountToDrop);
 
-        // TODO Project items from player
+        if (amountToDrop == 0)
+        {
+            return;
+        }
 
+        Transform playerTransform = CharacterMovement.Instance.transform;
+        GameObject pickupObj = Instantiate(itemToDrop.Pickup, playerTransform.position + playerTransform.forward * dropOffset, playerTransform.rotation);
+        ItemPickup pickup = pickupObj.GetComponent<ItemPickup>();
+        Rigidbody pickupRB = pickupObj.GetComponent<Rigidbody>();
+
+        pickup.amount = amountToDrop;
+        pickup.item = itemToDrop;
+        pickupRB.velocity = playerTransform.forward * dropSpeed;
     }
 
     public void DropAll()
@@ -148,7 +163,7 @@ public class ItemSlot : MonoBehaviour
 
     public void TransferTo(ItemSlot slot, int amountToTransfer)
     {
-        IItem itemToTransfer = HoldingItem;
+        Item itemToTransfer = HoldingItem;
         amountToTransfer = DeductItem(amountToTransfer);
         amountToTransfer -= slot.AddItem(itemToTransfer, amountToTransfer);
         AddItem(itemToTransfer, amountToTransfer);
