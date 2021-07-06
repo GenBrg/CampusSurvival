@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = fireRadius;
         eyesightLayer = LayerMask.GetMask("Ground", "Structure");
-        //enemyBehavior = GetComponent<IEnemyBehavior>();
+        enemyBehavior = GetComponent<IEnemyBehavior>();
     }
 
     bool PlayerInSight()
@@ -68,10 +68,12 @@ public class EnemyAI : MonoBehaviour
                     {
                         
                     }
-                    //enemyBehavior.Fire();
+                    enemyBehavior.OnStopChase();
+                    enemyBehavior.Fire();
                 }
                 else
                 {
+                    enemyBehavior.OnChase();
                     agent.destination = playerTransform.position;
                 }
             }
@@ -81,6 +83,7 @@ public class EnemyAI : MonoBehaviour
                 if (losingTimer > timeToLose)
                 {
                     isChasing = false;
+                    enemyBehavior.OnStopChase();
                 }
             }
         }
@@ -90,6 +93,7 @@ public class EnemyAI : MonoBehaviour
             {
                 isChasing = true;
                 losingTimer = 0.0f;
+                enemyBehavior.OnChase();
             }
         }
     }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.Events;
 
 /** 
  * A stack of items to be picked up in the scene
@@ -11,7 +13,7 @@ public class ItemPickup : MonoBehaviour
 {
     public int amount;
     public Item item;
-
+    
     private Backpack backpack;
     
     // Start is called before the first frame update
@@ -20,17 +22,11 @@ public class ItemPickup : MonoBehaviour
         backpack = FindObjectOfType<Backpack>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<CharacterMovement>())
         {
-            amount = backpack.AddItem(Instantiate(item), amount);
+            amount = backpack.AddItem(item, amount);
 
             if (amount == 0)
             {

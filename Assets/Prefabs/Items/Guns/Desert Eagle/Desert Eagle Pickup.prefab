@@ -92,7 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 1
-  item: {fileID: 1166756302043629349, guid: 7df53eff43c76d640b8e533575213b0c, type: 3}
+  item:
+    prototype: {fileID: 11400000, guid: c49d24c280cb4c04fbb705fd3f504f6d, type: 2}
 --- !u!1001 &2754155631009539633
 PrefabInstance:
   m_ObjectHideFlags: 0

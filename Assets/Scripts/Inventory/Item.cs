@@ -7,7 +7,8 @@ using UnityEngine;
  * 
  * @author Jiasheng Zhou
  */
-public class Item : MonoBehaviour
+[System.Serializable]
+public class Item
 {
     public ItemPrototype prototype;
 

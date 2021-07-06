@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9ea8a7533560f924c844649bcf698430, type: 3}
   maxStackSize: 10
   model: {fileID: 8413069170581893141, guid: 51e89154d6738bd46a66d05e8c2405eb, type: 3}
-  pickup: {fileID: 0}
+  pickup: {fileID: 8008502802817243614, guid: 53dfd19bfbec2e24fac46a9846b54a45, type: 3}
   bullet: {fileID: 3862041458828630094, guid: a001db55913da2c4686efa0764c7fff2, type: 3}
   initialSpeed: 100
   lifeTime: 20
