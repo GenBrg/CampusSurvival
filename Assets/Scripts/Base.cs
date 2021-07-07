@@ -7,6 +7,7 @@ public class Base : MonoBehaviour
     public int level = 1;
     public int healAmount = 10;
     public float healInterval = 3;
+    public ItemRequirement structureRequirement;
 
     private RateLimiter healRateLimiter;
     private Health health;

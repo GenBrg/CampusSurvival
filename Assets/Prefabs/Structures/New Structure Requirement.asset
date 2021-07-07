@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec80633a4834924e9830278cb261c50, type: 3}
   m_Name: New Structure Requirement
   m_EditorClassIdentifier: 
+  materialRequirements:
+  - wood: 0
+    scrapMetal: 0
+    refinedMetal: 0

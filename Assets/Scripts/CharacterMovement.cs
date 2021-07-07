@@ -13,7 +13,10 @@ public class CharacterMovement : MonoBehaviour
 
     public float jumpHeight = 0.8f;
 
-    public bool isGrounded;
+    public bool isGrounded
+    {
+        get => characterController.isGrounded;
+    }
     public bool isSprint;
     public bool isCrouch;
 
@@ -54,7 +57,7 @@ public class CharacterMovement : MonoBehaviour
         velocity.y += -Constants.Gravity * Time.deltaTime;
 
         // Check Grouned
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundLayerMask);
+        //isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundLayerMask);
 
         if (isGrounded)
         {

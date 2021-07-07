@@ -34,10 +34,20 @@ public class ZombieBehavior : IEnemyBehavior
 
     public override void OnChase()
     {
-        animator.SetBool("Chase", true);
+        
     }
 
     public override void OnStopChase()
+    {
+        
+    }
+
+    public override void OnMoving()
+    {
+        animator.SetBool("Chase", true);
+    }
+
+    public override void OnNotMoving()
     {
         animator.SetBool("Chase", false);
     }

@@ -56,6 +56,15 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (agent.velocity == Vector3.zero)
+        {
+            enemyBehavior.OnNotMoving();
+        } 
+        else
+        {
+            enemyBehavior.OnMoving();
+        }
+
         if (isChasing)
         {
             if (PlayerInSight())

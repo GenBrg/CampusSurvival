@@ -8,4 +8,6 @@ public abstract class IEnemyBehavior : MonoBehaviour
     public abstract void Die();
     public abstract void OnChase();
     public abstract void OnStopChase();
+    public abstract void OnMoving();
+    public abstract void OnNotMoving();
 }
