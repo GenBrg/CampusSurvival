@@ -8,8 +8,10 @@ public class EnemyAI : MonoBehaviour
     public float detectionFOV = 210.0f;
     public float detectionRadius = 10.0f;
     public float loseRadius = 15.0f;
-    public float fireRadius = 5.0f;
+    public float detectAnywayRadius = 3.0f;
+    public float fireRadius = 1.5f;
     public float timeToLose = 3.0f;
+    public float rotationSpeed = 60.0f;
     
     private Transform playerTransform;
     private NavMeshAgent agent;
@@ -39,7 +41,7 @@ public class EnemyAI : MonoBehaviour
             return false;
         }
 
-        if (Vector3.Angle(transform.forward, playerDir) > (detectionFOV / 2.0f))
+        if (playerDir.magnitude > detectAnywayRadius && Vector3.Angle(transform.forward, playerDir) > (detectionFOV / 2.0f))
         {
             return false;
         }
@@ -75,10 +77,13 @@ public class EnemyAI : MonoBehaviour
                 {
                     if (Vector3.Angle(playerDir, transform.forward) > 10.0f)
                     {
-                        
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(playerDir, Vector3.up), Time.deltaTime * rotationSpeed);
                     }
-                    enemyBehavior.OnStopChase();
-                    enemyBehavior.Fire();
+                    else
+                    {
+                        enemyBehavior.OnStopChase();
+                        enemyBehavior.Fire();
+                    }
                 }
                 else
                 {

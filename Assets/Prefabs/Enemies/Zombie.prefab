@@ -65,8 +65,10 @@ MonoBehaviour:
   detectionFOV: 210
   detectionRadius: 10
   loseRadius: 15
+  detectAnywayRadius: 3
   fireRadius: 1.5
   timeToLose: 3
+  rotationSpeed: 60
 --- !u!195 &6579836740091337641
 NavMeshAgent:
   m_ObjectHideFlags: 0
