@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactKey: 101
-  hint: Press 'E' to interact
+  hint: Press 'E' to upgrade base
   showHint: 1
 --- !u!114 &1603245448108570103
 MonoBehaviour:
@@ -79,6 +79,9 @@ MonoBehaviour:
   level: 0
   healAmount: 0
   healInterval: 3
+  structureRequirement:
+    materialRequirements: []
+    techRequirements: []
 --- !u!65 &1603245448108570100
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -88,10 +88,10 @@ public class ItemSlot : MonoBehaviour
 
     private void Awake()
     {
-        itemIcon = GetComponentsInChildren<Image>()[1];
-        amountText = GetComponentInChildren<TextMeshProUGUI>();
+            itemIcon = GetComponentsInChildren<Image>()[1];
+            amountText = GetComponentInChildren<TextMeshProUGUI>();
 
-        ClearSlot();
+            ClearSlot();
     }
 
     // @return amount actually deducted from the item slot.

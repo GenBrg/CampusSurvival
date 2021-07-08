@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 8831173615642407959}
   - component: {fileID: 8114829385816357928}
   - component: {fileID: 3646311051369964462}
+  - component: {fileID: 8482613116285790174}
   m_Layer: 0
   m_Name: Desert Eagle Pickup
   m_TagString: Untagged
@@ -93,7 +94,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 1
   item:
-    prototype: {fileID: 11400000, guid: c49d24c280cb4c04fbb705fd3f504f6d, type: 2}
+    prototype: {fileID: 0}
+  spawnItem: {fileID: 8482613116285790174}
+  remainTime: 30
+--- !u!114 &8482613116285790174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708495259473601293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce072380ba121448a2880b2c06ad697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPrototype: {fileID: 11400000, guid: c49d24c280cb4c04fbb705fd3f504f6d, type: 2}
+  initialAmmoNum: 7
 --- !u!1001 &2754155631009539633
 PrefabInstance:
   m_ObjectHideFlags: 0

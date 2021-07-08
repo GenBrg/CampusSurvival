@@ -12,6 +12,8 @@ public class Item
 {
     public ItemPrototype prototype;
 
+    private static IDictionary<ItemPrototype, Item> cachedItems;
+
     public string Name => prototype.name;
 
     public string Description => prototype.description;
@@ -24,9 +26,26 @@ public class Item
 
     public GameObject Pickup => prototype.pickup;
 
+    public bool Valid => prototype != null;
+
     public virtual void OnEquip() { }
     public virtual bool OnHandUpdate() { return false; }
     public virtual void OnUnequip() { }
+
+    protected Item(ItemPrototype prototype)
+    {
+        this.prototype = prototype;
+    }
+
+    public static Item SpawnItem(ItemPrototype prototype)
+    {
+        if (!cachedItems.ContainsKey(prototype))
+        {
+            cachedItems[prototype] = new Item(prototype);
+        }
+
+        return cachedItems[prototype];
+    }
 
     public override bool Equals(object other)
     {

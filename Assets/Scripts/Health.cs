@@ -14,7 +14,7 @@ public class Health : Damagable
     public OnHealthChange onHealthChange;
     public UnityAction onHeal;
     public UnityAction onDamaged;
-    public Func<float> onDie;
+    public UnityAction onDie;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class Health : Damagable
 
         if (onDie != null)
         {
-            Destroy(gameObject, onDie());
+            onDie();
         }
         else
         {

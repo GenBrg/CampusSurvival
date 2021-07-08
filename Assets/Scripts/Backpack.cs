@@ -172,7 +172,7 @@ public class Backpack : MonoBehaviour
         // Fill stackable slots
         foreach (ItemSlot slot in itemSlots)
         {
-            if (slot.IsEmpty || slot.HoldingItem != item)
+            if (slot.IsEmpty || !slot.HoldingItem.Equals(item))
             {
                 continue;
             }

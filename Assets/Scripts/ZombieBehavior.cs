@@ -15,10 +15,12 @@ public class ZombieBehavior : IEnemyBehavior
     {
         animator = GetComponentInChildren<Animator>();
         attackRateLimiter = new RateLimiter(attackInterval, FireImpl);
+        GetComponent<Health>().onDie += Die;
     }
 
     public override void Die()
     {
+        --EnemySpawner.Instance.ZombieNum;
         animator.SetTrigger("Die");
         Destroy(gameObject, dieAnimation.length);
     }

@@ -44,8 +44,9 @@ public class Gun : Item
         }
     }
 
-    private void Start()
+    public Gun(GunPrototype prototype, int initialAmmo) : base(prototype)
     {
+        ammo = initialAmmo;
         gunPrototype = prototype as GunPrototype;
         
         input = Object.FindObjectOfType<InputManager>();

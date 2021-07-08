@@ -23,7 +23,18 @@ public class EnemySpawner : MonoBehaviour
 
     private int zombieNum = 0;
     private float nextSpawnInterval = 0.0f;
-    
+    private static EnemySpawner _instance;
+
+    public int ZombieNum
+    {
+        get => zombieNum;
+        set => zombieNum = value;
+    }
+
+    public static EnemySpawner Instance
+    {
+        get => _instance;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
         playerTransform = CharacterMovement.Instance.transform;
         groundLayer = LayerMask.NameToLayer("Ground");
         groundStructureLayer = LayerMask.GetMask("Ground", "Structure");
+        _instance = this;
     }
 
     // Update is called once per frame
@@ -79,7 +91,7 @@ public class EnemySpawner : MonoBehaviour
             ++zombieNum;
             lastSpawnTime = Time.time;
             nextSpawnInterval = Random.Range(spawnIntervalRange.x, spawnIntervalRange.y);
-            Instantiate(zombie, hit.point, Quaternion.identity);
+            Instantiate(zombie, hit.point, Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
 
             break;
         }

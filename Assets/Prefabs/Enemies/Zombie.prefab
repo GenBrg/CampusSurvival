@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6579836740091337642}
   - component: {fileID: 6579836740091337641}
   - component: {fileID: 6579836740091337643}
+  - component: {fileID: 3622042902111365123}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Enemy
@@ -103,6 +104,20 @@ MonoBehaviour:
   zombieAttack: {fileID: 6145572152263232646, guid: c511738dcdf5c7a45a5e5a685a6c7428, type: 3}
   dieAnimation: {fileID: 7400000, guid: 812aae90a9297f249908057eed4c0879, type: 2}
   attackInterval: 3
+--- !u!136 &3622042902111365123
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6579836740091337635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6579836740687339376
 PrefabInstance:
   m_ObjectHideFlags: 0

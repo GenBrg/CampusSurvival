@@ -13,6 +13,7 @@ public class BulletMovement : MonoBehaviour
     private GameObject bulletImpact;
 
     private Vector3 velocity;
+    //private Vector3 positionLastFrame;
 
     public GameObject Owner
     {
@@ -27,6 +28,7 @@ public class BulletMovement : MonoBehaviour
         lifeTime = prototype.lifeTime;
         bulletImpact = prototype.bulletImpact;
         velocity = transform.forward * initialSpeed;
+        //positionLastFrame = transform.position;
     }
 
     // Update is called once per frame
@@ -40,11 +42,16 @@ public class BulletMovement : MonoBehaviour
 
         lifeTime -= Time.deltaTime;
         transform.position += velocity * Time.deltaTime;
+
+        //foreach (RaycastHit hit in Physics.RaycastAll(new Ray(positionLastFrame, transform.position - positionLastFrame), (transform.position - positionLastFrame).magnitude))
+        //{
+        //    hit.collider
+        //}
+        //positionLastFrame = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         Instantiate(bulletImpact, transform.position, transform.rotation);
         Damagable[] damagables = other.gameObject.GetComponents<Damagable>();
         foreach (Damagable damagable in damagables)

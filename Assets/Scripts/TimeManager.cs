@@ -199,8 +199,18 @@ public class TimeManager : MonoBehaviour
         }
 
         // Day night shift
-        sunLight.transform.rotation = Quaternion.Euler((270.0f + GameTimeInDay * 360.0f / kSecondsInDay) % 360.0f, 0.0f, 0.0f);
-        moonLight.transform.rotation = Quaternion.Euler((90.0f + GameTimeInDay * 360.0f / kSecondsInDay) % 360.0f, 0.0f, 0.0f);
+        if (Hour < 6 || Hour >= 18)
+        {
+            sunLight.gameObject.SetActive(false);
+            moonLight.gameObject.SetActive(true);
+            moonLight.transform.rotation = Quaternion.Euler((90.0f + GameTimeInDay * 360.0f / kSecondsInDay) % 360.0f, 30.0f, 30.0f);
+        } 
+        else
+        {
+            sunLight.gameObject.SetActive(true);
+            moonLight.gameObject.SetActive(false);
+            sunLight.transform.rotation = Quaternion.Euler((270.0f + GameTimeInDay * 360.0f / kSecondsInDay) % 360.0f, 30.0f, 30.0f);
+        }
     }
 
     

@@ -31,6 +31,9 @@ public class CharacterMovement : MonoBehaviour
     public float baseMaxSpeed = 5.0f;
     public float baseLateralSpeed = 5.0f;
 
+    public RandomAudioPlayer damageSound;
+    public RandomAudioPlayer healSound;
+
     private Vector3 velocity;
     private InputManager input;
 
@@ -44,11 +47,23 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        GetComponent<Health>().onDie += () =>
+        Health health = GetComponent<Health>();
+        health.onDie += () =>
         {
             GameManager.win = false;
             SceneManager.LoadScene("EndScene");
-            return 0.0f;
+        };
+
+        health.onHeal += () =>
+        {
+            HUD.Instance.FlashHealEffect();
+            healSound.Play();
+        };
+
+        health.onDamaged += () =>
+        {
+            HUD.Instance.FlashDamageEffect();
+            damageSound.Play();
         };
     }
 
