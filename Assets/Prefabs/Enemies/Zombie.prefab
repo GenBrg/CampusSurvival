@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64efeb748f01984a9248d31e498928e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombieAttack: {fileID: 6145572152263232646, guid: c511738dcdf5c7a45a5e5a685a6c7428, type: 3}
   dieAnimation: {fileID: 7400000, guid: 812aae90a9297f249908057eed4c0879, type: 2}
   attackInterval: 3
 --- !u!1001 &6579836740687339376

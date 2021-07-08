@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +14,15 @@ public class Health : Damagable
     public OnHealthChange onHealthChange;
     public UnityAction onHeal;
     public UnityAction onDamaged;
-    public UnityAction onDie;
+    public Func<float> onDie;
+
+    private void Start()
+    {
+        if (onHealthChange != null)
+        {
+            onHealthChange(currentHealth, maxHealth);
+        }
+    }
 
     private void Die()
     {
@@ -25,10 +34,12 @@ public class Health : Damagable
 
         if (onDie != null)
         {
-            onDie();
+            Destroy(gameObject, onDie());
         }
-        
-        Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Heal(float amount)

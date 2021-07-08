@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -43,6 +44,12 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        GetComponent<Health>().onDie += () =>
+        {
+            GameManager.win = false;
+            SceneManager.LoadScene("EndScene");
+            return 0.0f;
+        };
     }
 
     private void Start()

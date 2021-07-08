@@ -153,7 +153,7 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         // Calculate game time
-        _gameTime = (int)(gameTimeRealTimeRatio * Time.time + startingTime);
+        _gameTime = (int)(gameTimeRealTimeRatio * Time.timeSinceLevelLoad + startingTime);
         _day = _gameTime / (24 * 60 * 60);
         _hour = (_gameTime % (24 * 60 * 60)) / (60 * 60);
         _minute = (_gameTime % (60 * 60)) / 60;
@@ -164,6 +164,7 @@ public class TimeManager : MonoBehaviour
         }
 
         // Process routine events
+
         foreach (int startTimeInDay in routines.Keys)
         {
             int gameTimeInDay = GameTimeInDay;

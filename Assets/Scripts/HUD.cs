@@ -53,6 +53,7 @@ public class HUD : MonoBehaviour
     public void SetHealth(int currentHealth, int maxHealth)
     {
         healthUI.text = "HP: " + currentHealth + " / " + maxHealth;
+        healthUI.color = Color.Lerp(Color.red, Color.green, (float)currentHealth / maxHealth);
     }
 
     public void SetTime(int day, int hour, int minute)
