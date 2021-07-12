@@ -22,7 +22,7 @@ public class ItemPickup : MonoBehaviour
     void Start()
     {
         backpack = FindObjectOfType<Backpack>();
-        DestroyObject(gameObject, remainTime);
+        Destroy(gameObject, remainTime);
         Debug.Assert(spawnItem != null || item.Valid);
     }
 

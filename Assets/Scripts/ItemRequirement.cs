@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -13,17 +15,11 @@ public class ItemRequirement
         get => materialRequirements.Length;
     }
 
-    private void Awake()
+    public bool CheckRequirement(int level)
     {
-
+        return GetMaterialRequirement(level).CheckRequirement()
+            && GetTechRequirement(level).CheckRequirement();
     }
-
-    //public bool CheckRequirement(int level)
-    //{
-    //    //MaterialRequirement matReq 
-
-
-    //}
 
     public bool CheckLevel(int level)
     {
@@ -48,5 +44,34 @@ public class ItemRequirement
         }
 
         return techRequirements[level - 1];
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < MaxLevel; ++i)
+        {
+            sb.AppendLine("Level: " + (i + 1));
+            sb.AppendLine(materialRequirements[i].ToString());
+            sb.AppendLine(techRequirements[i].ToString());
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
+    }
+
+    public string FirstLevelToString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        if (MaxLevel >= 1)
+        {
+            sb.AppendLine(materialRequirements[1].ToString());
+            sb.AppendLine(techRequirements[1].ToString());
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
     }
 }

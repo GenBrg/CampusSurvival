@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec80633a4834924e9830278cb261c50, type: 3}
+  m_Script: {fileID: 11500000, guid: 66e1b6b37855e3443a2e95556136a4bd, type: 3}
   m_Name: New Structure Requirement
   m_EditorClassIdentifier: 
-  materialRequirements:
-  - wood: 0
-    scrapMetal: 0
-    refinedMetal: 0
+  amount: 0
+  item:
+    prototype: {fileID: 0}
+  spawnItem: {fileID: 0}
+  remainTime: 30

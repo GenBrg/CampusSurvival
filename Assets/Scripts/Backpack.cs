@@ -88,6 +88,31 @@ public class Backpack : MonoBehaviour
         }
     }
 
+    public bool HasEnoughItem(ItemPrototype item, int amount)
+    {
+        if (amount <= 0)
+        {
+            return true;
+        }
+
+        int amountInInventory = 0;
+
+        // Scan backpack
+        foreach (ItemSlot slot in itemSlots)
+        {
+            if (!slot.IsEmpty && slot.HoldingItem.Equals(item))
+            {
+                amountInInventory += slot.Amount;
+                if (amountInInventory >= amount)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public bool TryUseItem(ItemPrototype item, int amountToUse, bool useAnyway)
     {
         if (amountToUse == 0)

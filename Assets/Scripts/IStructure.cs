@@ -4,8 +4,25 @@ using UnityEngine;
 
 public class IStructure : MonoBehaviour
 {
-    public ItemRequirement structureRequirement;
+    public StructurePrototype prototype;
     public int level;
+    public int hp;
+
+    public string Name
+    {
+        get => prototype.name;
+    }
+
+    public string Description
+    {
+        get => prototype.description;
+    }
+
+    public ItemRequirement Requirement
+    {
+        get => prototype.requirement;
+    }
+
 
     public void LevelUp()
     {

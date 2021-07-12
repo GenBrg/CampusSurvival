@@ -80,7 +80,10 @@ MonoBehaviour:
   healAmount: 0
   healInterval: 3
   structureRequirement:
-    materialRequirements: []
+    materialRequirements:
+    - wood: 0
+      scrapMetal: 0
+      refinedMetal: 0
     techRequirements: []
 --- !u!65 &1603245448108570100
 BoxCollider:

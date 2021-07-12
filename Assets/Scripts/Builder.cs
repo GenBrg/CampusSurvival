@@ -34,13 +34,11 @@ public class Builder : MonoBehaviour
     {
         playerCamera = GetComponentInChildren<Camera>();
 
-        // TODO Instantiate upon building UI button
-
         groundLayer = LayerMask.NameToLayer("Ground");
         backpack = Backpack.Instance;
     }
 
-    void StartBuild(GameObject structureGhost, GameObject structure)
+    public void StartBuild(GameObject structureGhost, GameObject structure)
     {
         this.structureGhost = Instantiate(structureGhost);
         this.structure = structure;
