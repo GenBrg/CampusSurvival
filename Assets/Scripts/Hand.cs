@@ -50,7 +50,7 @@ public class Hand : MonoBehaviour
             itemDescription.SetActive(true);
             itemDescription.GetComponent<RectTransform>().position = Input.mousePosition;
             itemTitle.text = slot.HoldingItem.Name;
-            itemTitle.text = slot.HoldingItem.Description;
+            itemDescriptionText.text = slot.HoldingItem.Description;
         }
         else
         {
