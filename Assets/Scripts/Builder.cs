@@ -10,8 +10,7 @@ using UnityEngine;
  */
 public class Builder : MonoBehaviour
 {
-    public GameObject structureGhost;
-    public GameObject structure;
+    public StructurePrototype structurePrototype;
     public Material structureGhostValidMaterial;
     public Material structureGhostInvalidMaterial;
 
@@ -23,10 +22,11 @@ public class Builder : MonoBehaviour
     private Camera playerCamera;
     private bool locationValid;
     private Backpack backpack;
+    private GameObject structureGhost;
 
     public bool Active
     {
-        get => structureGhost != null && structure != null;
+        get => structurePrototype != null;
     }
 
     // Start is called before the first frame update
@@ -38,39 +38,30 @@ public class Builder : MonoBehaviour
         backpack = Backpack.Instance;
     }
 
-    public void StartBuild(GameObject structureGhost, GameObject structure)
+    public void StartBuild(StructurePrototype structurePrototype)
     {
-        this.structureGhost = Instantiate(structureGhost);
-        this.structure = structure;
+        this.structurePrototype = structurePrototype;
+
+        structureGhost = Instantiate(structurePrototype.structureModel);
     }
 
     void CancelBuild()
     {
-        if (this.structureGhost != null)
+        if (structureGhost != null)
         {
             Destroy(structureGhost);
         }
-        this.structure = null;
+        structurePrototype = null;
+        structureGhost = null;
     }
 
     void TryBuild()
     {
-        if (CheckRequirement())
+        if (locationValid && structurePrototype.requirement.TryConsumeRequirement(1))
         {
-            Instantiate(structure, structureGhost.transform.position, structureGhost.transform.rotation);
+            Instantiate(structurePrototype.structurePrefab, structureGhost.transform.position, structureGhost.transform.rotation);
             CancelBuild();
         }
-    }
-
-    bool CheckRequirement()
-    {
-        if (!locationValid)
-        {
-            return false;
-        }
-
-        // TODO Check requirements
-        return true;
     }
 
     void SetGhostMaterial(Material material)

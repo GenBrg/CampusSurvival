@@ -12,11 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4441f48998ae2ff42b1ed99261a63af5, type: 3}
   m_Name: MachineGunTurret
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Machine Gun Turret
+  description: Basic defensive turret
   requirement:
-    materialRequirements: []
-    techRequirements: []
+    materialRequirements:
+    - wood: 0
+      scrapMetal: 0
+      refinedMetal: 0
+    - wood: 0
+      scrapMetal: 0
+      refinedMetal: 0
+    - wood: 0
+      scrapMetal: 0
+      refinedMetal: 0
+    techRequirements:
+    - techs: 
+    - techs: 
+    - techs: 
   fulfillment: []
   maxHP: 
   structureModel: {fileID: 0}

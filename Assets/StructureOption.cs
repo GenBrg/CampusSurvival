@@ -36,7 +36,7 @@ public class StructureOption : MonoBehaviour
         if (structure.requirement.CheckRequirement(1))
         {
             StructureUIController.Instance.CloseStructureUI();
-            builder.StartBuild(structure.structureModel, structure.structurePrefab);
+            builder.StartBuild(structure);
         }
     }
 

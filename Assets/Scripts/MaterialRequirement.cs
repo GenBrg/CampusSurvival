@@ -51,6 +51,7 @@ public class MaterialRequirement
 
     public bool CheckRequirement()
     {
+        AcquirePrototypes();
         return Backpack.Instance.HasEnoughItem(woodPrototype, wood)
             && Backpack.Instance.HasEnoughItem(scrapMetalPrototype, scrapMetal) 
             && Backpack.Instance.HasEnoughItem(refinedMetalPrototype, refinedMetal);
@@ -58,6 +59,10 @@ public class MaterialRequirement
 
     public bool TryConsumeRequirement()
     {
+        if (!CheckRequirement())
+        {
+            return false;
+        }
         return Backpack.Instance.TryUseItem(woodPrototype, wood, false)
             && Backpack.Instance.TryUseItem(scrapMetalPrototype, scrapMetal, false)
             && Backpack.Instance.TryUseItem(refinedMetalPrototype, refinedMetal, false);

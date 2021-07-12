@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class StructureUIController : MonoBehaviour
 {
+    public UnityEvent onStructureUIOpen;
+    public UnityEvent onStructureUIClose;
+
     private GameObject UI;
     private GameObject structureDescription;
 
@@ -37,6 +41,8 @@ public class StructureUIController : MonoBehaviour
         UI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0.0f;
+
+        onStructureUIOpen.Invoke();
     }
 
     public void CloseStructureUI()
@@ -45,6 +51,8 @@ public class StructureUIController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1.0f;
         structureDescription.SetActive(false);
+
+        onStructureUIClose.Invoke();
     }
 
     void Update()

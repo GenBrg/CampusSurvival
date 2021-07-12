@@ -26,6 +26,11 @@ public class ItemRequirement
         return level >= 1 && level <= MaxLevel;
     }
 
+    public bool TryConsumeRequirement(int level)
+    {
+        return GetMaterialRequirement(level).TryConsumeRequirement();
+    }
+
     public MaterialRequirement GetMaterialRequirement(int level)
     {
         if (!CheckLevel(level))
