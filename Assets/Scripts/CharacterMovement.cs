@@ -31,17 +31,36 @@ public class CharacterMovement : MonoBehaviour
     public float baseMaxSpeed = 5.0f;
     public float baseLateralSpeed = 5.0f;
 
+    public float punchInterval = 2.0f;
+
     public RandomAudioPlayer damageSound;
     public RandomAudioPlayer healSound;
+    public RandomAudioPlayer punchSound;
+
+    public GameObject playerPunch;
 
     private Vector3 velocity;
     private InputManager input;
+
+    private RateLimiter punchRateLimiter;
 
     private static CharacterMovement _instance;
 
     public static CharacterMovement Instance
     {
         get => _instance;
+    }
+
+    private void PunchImpl()
+    {
+        GameObject punchAOE = Instantiate(playerPunch, transform);
+        punchAOE.GetComponent<AOE>().owner = gameObject;
+        punchSound.Play();
+    }
+
+    public void Punch()
+    {
+        punchRateLimiter.Invoke();
     }
 
     private void Awake()
@@ -65,6 +84,8 @@ public class CharacterMovement : MonoBehaviour
             HUD.Instance.FlashDamageEffect();
             damageSound.Play();
         };
+
+        punchRateLimiter = new RateLimiter(punchInterval, PunchImpl);
     }
 
     private void Start()

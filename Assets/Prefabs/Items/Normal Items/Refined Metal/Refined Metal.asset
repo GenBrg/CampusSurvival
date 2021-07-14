@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f16acd485e76640b74c7e30aad006a, type: 3}
   m_Name: Refined Metal
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  icon: {fileID: 0}
-  maxStackSize: 0
-  model: {fileID: 0}
-  pickup: {fileID: 0}
+  name: Refined Metal
+  description: 'Resources: Refined metal'
+  icon: {fileID: 21300000, guid: 0e8bde34bdef09d489475d445cdd3c67, type: 3}
+  maxStackSize: 1
+  model: {fileID: 919132149155446097, guid: 496a5a5cd47c5894480289119000dca2, type: 3}
+  pickup: {fileID: 2878344041290520342, guid: 24659cfc6c7551041a224f7462f7667a, type: 3}

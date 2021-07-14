@@ -46,11 +46,19 @@ public class Hotbar : MonoBehaviour
         {
             CurrentSlot.HoldingItem.OnUnequip();
         }
+        else
+        {
+            // TODO Remove hand
+        }
 
         // Equip item
         if (!itemSlots[idx].IsEmpty)
         {
             itemSlots[idx].HoldingItem.OnEquip();
+        }
+        else
+        {
+            // TODO Switch to hand
         }
 
         index = idx;
@@ -91,6 +99,13 @@ public class Hotbar : MonoBehaviour
         if (!CurrentSlot.IsEmpty)
         {
             CurrentSlot.HoldingItem.OnHandUpdate();
+        }
+        else
+        {
+            if (InputManager.Instance.AutoFire1)
+            {
+                CharacterMovement.Instance.Punch();
+            }
         }
     }
 }

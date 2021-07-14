@@ -6,11 +6,17 @@ public class ZombieBehavior : IEnemyBehavior
 {
     private Animator animator;
     private RateLimiter attackRateLimiter;
+    private bool _isDead = false;
 
     public GameObject zombieAttack;
     public AnimationClip dieAnimation;
     public float attackInterval;
 
+    public bool IsDead
+    {
+        get => _isDead;
+    }
+    
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -23,6 +29,7 @@ public class ZombieBehavior : IEnemyBehavior
         --EnemySpawner.Instance.ZombieNum;
         animator.SetTrigger("Die");
         Destroy(gameObject, dieAnimation.length);
+        _isDead = true;
     }
 
     private void FireImpl()

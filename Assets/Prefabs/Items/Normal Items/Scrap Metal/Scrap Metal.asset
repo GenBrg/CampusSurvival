@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f16acd485e76640b74c7e30aad006a, type: 3}
   m_Name: Scrap Metal
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  icon: {fileID: 0}
-  maxStackSize: 0
-  model: {fileID: 0}
-  pickup: {fileID: 0}
+  name: Scrap Metal
+  description: 'Resources: scrap metal'
+  icon: {fileID: 21300000, guid: 1bc6aa503d4bb794b903f6ebfcf2f3ab, type: 3}
+  maxStackSize: 3
+  model: {fileID: 919132149155446097, guid: 7dcd424d7f38f9a47942bfdaf99b6cfe, type: 3}
+  pickup: {fileID: 2896907702376401165, guid: 5772538e2d8d5bb45aaf08272b313298, type: 3}
