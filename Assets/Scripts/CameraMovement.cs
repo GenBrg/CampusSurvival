@@ -6,6 +6,8 @@ public class CameraMovement : MonoBehaviour
 {
     public float sensitivity = 100.0f;
     public Transform playerTransform;
+    public Light flashLight;
+    public RandomAudioPlayer toggleSFX;
 
     private float xRotation = 0.0f;
 
@@ -14,6 +16,20 @@ public class CameraMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
+    }
+
+    void ToggleFlashLight()
+    {
+        toggleSFX.Play();
+
+        if (flashLight.gameObject.activeInHierarchy)
+        {
+            flashLight.gameObject.SetActive(false);
+        }
+        else
+        {
+            flashLight.gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -28,5 +44,10 @@ public class CameraMovement : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
 
         playerTransform.Rotate(Vector3.up * horizontalRotation);
+
+        if (Input.GetButtonDown("Flash Light"))
+        {
+            ToggleFlashLight();
+        }
     }
 }

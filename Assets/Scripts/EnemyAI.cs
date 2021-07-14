@@ -58,6 +58,12 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyBehavior.IsDead)
+        {
+            agent.destination = agent.transform.position;
+            return;
+        }
+
         if (agent.velocity == Vector3.zero)
         {
             enemyBehavior.OnNotMoving();

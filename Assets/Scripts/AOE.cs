@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class AOE : MonoBehaviour
 {
+    public enum Type
+    {
+        PUNCH,
+
+    }
+
     public float effectStartTime;
     public float effectEndTime;
     public float damage;
     public GameObject owner;
+    public Type type;
     
     private float effectSpawnTime;
     private ISet<Collider> considered;

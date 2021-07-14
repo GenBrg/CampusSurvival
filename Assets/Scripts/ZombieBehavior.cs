@@ -12,7 +12,7 @@ public class ZombieBehavior : IEnemyBehavior
     public AnimationClip dieAnimation;
     public float attackInterval;
 
-    public bool IsDead
+    public override bool IsDead
     {
         get => _isDead;
     }

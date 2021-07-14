@@ -35,7 +35,13 @@ public class ItemPickup : MonoBehaviour
                 item = spawnItem.SpawnItem();
             }
 
+            int origAmount = amount;
             amount = backpack.AddItem(item, amount);
+
+            if (amount < origAmount)
+            {
+                // TODO Play pickup sound
+            }
 
             if (amount == 0)
             {

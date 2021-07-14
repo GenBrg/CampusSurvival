@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class IEnemyBehavior : MonoBehaviour
 {
+    public abstract bool IsDead { get;  }
+
     public abstract void Fire();
     public abstract void Die();
     public abstract void OnChase();

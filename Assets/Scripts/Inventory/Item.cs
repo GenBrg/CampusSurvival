@@ -12,7 +12,7 @@ public class Item
 {
     public ItemPrototype prototype;
 
-    private static IDictionary<ItemPrototype, Item> cachedItems;
+    private static IDictionary<ItemPrototype, Item> cachedItems = new Dictionary<ItemPrototype, Item>();
 
     public string Name => prototype.name;
 
