@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform spawnMinPoint;
     public Transform spawnMaxPoint;
     public Vector2 spawnRadiusRange;
+
     public GameObject zombie;
 
     public Vector2 spawnIntervalRange;

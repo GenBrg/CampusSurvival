@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Minable : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Minable : MonoBehaviour
     public int minMineAmount = 2;
     public int maxMineAmount = 4;
     public RandomAudioPlayer mineSFX;
+    public UnityEvent onMined;
 
     private void OnMine()
     {
@@ -25,6 +27,7 @@ public class Minable : MonoBehaviour
         if (remainingAmount <= 0)
         {
             Destroy(gameObject);
+            onMined.Invoke();
         }
     }
 
