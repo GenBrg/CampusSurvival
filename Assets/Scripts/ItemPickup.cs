@@ -15,8 +15,15 @@ public class ItemPickup : MonoBehaviour
     public Item item;
     public ISpawnItem spawnItem;
     public float remainTime = 30.0f;
+    public AudioClip pickupSound;
     
     private Backpack backpack;
+    private bool _destroyed = false;
+
+    public bool Destroyed
+    {
+        get => _destroyed;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -28,8 +35,14 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (Destroyed)
+        {
+            return;
+        }
+
         if (other.GetComponent<CharacterMovement>())
         {
+            // Pickup items
             if (item == null || !item.Valid)
             {
                 item = spawnItem.SpawnItem();
@@ -40,12 +53,23 @@ public class ItemPickup : MonoBehaviour
 
             if (amount < origAmount)
             {
-                // TODO Play pickup sound
+                GameManager.PlaySound(pickupSound);
             }
 
             if (amount == 0)
             {
                 Destroy(gameObject);
+            }
+        }
+        else
+        {
+            // Merge same items
+            ItemPickup itemPickup = other.GetComponent<ItemPickup>();
+            if (itemPickup && !itemPickup.Destroyed && itemPickup.item.Equals(item))
+            {
+                amount += itemPickup.amount;
+                Destroy(itemPickup.gameObject);
+                itemPickup._destroyed = true;
             }
         }
     }

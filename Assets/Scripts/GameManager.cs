@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static bool win;
+    private static AudioSource audioSource;
+
+
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -15,5 +23,11 @@ public class GameManager : MonoBehaviour
             win = true;
             SceneManager.LoadScene("EndScene");
         });
+    }
+
+    public static void PlaySound(AudioClip audioClip)
+    {
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 }

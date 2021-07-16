@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2896907702376401165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6608267, y: 2.700627, z: 4.57593}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4191492797466665198}
@@ -73,8 +73,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.85, y: 1, z: 1.32}
-  m_Center: {x: 0, y: -2.21, z: 0}
+  m_Size: {x: 1.0299554, y: 0.8761921, z: 1.2233218}
+  m_Center: {x: -0.063479185, y: 0.27940893, z: 0.062053025}
 --- !u!54 &2534419660573089560
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
     prototype: {fileID: 11400000, guid: 95ed845e3acdf6f4099552d5b1d6f919, type: 2}
   spawnItem: {fileID: 0}
   remainTime: 30
+  pickupSound: {fileID: 0}
 --- !u!64 &3932408885094971833
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dcd424d7f38f9a47942bfdaf99b6cfe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7dcd424d7f38f9a47942bfdaf99b6cfe, type: 3}
       propertyPath: m_LocalPosition.z
