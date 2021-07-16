@@ -13,6 +13,15 @@ public class Interactable : MonoBehaviour
 
     private HUD hud;
 
+    public string Hint
+    {
+        set {
+            hint = value;
+            hud.SetHintText(value);
+        }
+    }
+
+
     private void Awake()
     {
         hud = GameObject.Find("HUD").GetComponent<HUD>();
@@ -22,7 +31,7 @@ public class Interactable : MonoBehaviour
     {
         if (other.gameObject.name == "Player" && showHint && hint != null)
         {
-            hud.ShowHint("Press '" + interactKey + "' to interact");
+            hud.ShowHint(hint);
         }
     }
 

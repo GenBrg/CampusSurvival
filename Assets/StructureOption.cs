@@ -24,7 +24,7 @@ public class StructureOption : MonoBehaviour
 
         StringBuilder sb = new StringBuilder(structure.description);
         sb.AppendLine();
-        sb.AppendLine(structure.requirement.FirstLevelToString());
+        sb.AppendLine(structure.requirement.ToString(1));
         description = sb.ToString();
 
         builder = CharacterMovement.Instance.gameObject.GetComponent<Builder>();

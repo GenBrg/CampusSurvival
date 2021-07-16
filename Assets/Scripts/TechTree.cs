@@ -13,6 +13,7 @@ public class TechTree : MonoBehaviour
 
     public enum Tech
     {
+        NONE,
         BASE2,
         BASE3,
         RADIO_TOWER

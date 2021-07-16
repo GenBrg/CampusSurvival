@@ -41,6 +41,11 @@ public class HUD : MonoBehaviour
         TimeManager.Instance.onTimeChange += (int day, int hour, int minute) => SetTime(day, hour, minute);
     }
 
+    public void SetHintText(string text)
+    {
+        hintUI.text = text;
+    }
+
     public void ShowHint(string text)
     {
         hintUI.gameObject.SetActive(true);

@@ -17,7 +17,7 @@ public class TechRequirement
         return sb.ToString();
     }
 
-    public bool CheckRequirement()
+    public bool CheckRequirements()
     {
         foreach (TechTree.Tech tech in techs)
         {
@@ -28,5 +28,13 @@ public class TechRequirement
         }
 
         return true;
+    }
+
+    public void FulfillRequirements()
+    {
+        foreach (TechTree.Tech tech in techs)
+        {
+            TechTree.Instance.Unlock(tech);
+        }
     }
 }

@@ -122,14 +122,14 @@ public class Gun : Item
     {
         base.OnHandUpdate();
 
-        bool hit = Physics.Raycast(new Ray(cameraTransform.position, cameraTransform.forward), out RaycastHit hitInfo, Range);
+        bool hit = Physics.Raycast(new Ray(cameraTransform.position + cameraTransform.forward * 1.0f, cameraTransform.forward), out RaycastHit hitInfo, Range);
         if (hit)
         {
             model.transform.LookAt(hitInfo.point);
         }
         else
         {
-            model.transform.LookAt(cameraTransform.position + cameraTransform.forward * Range);
+            model.transform.LookAt(cameraTransform.position + cameraTransform.forward * (Range + 1.0f));
         }
 
         if (input.Reload)

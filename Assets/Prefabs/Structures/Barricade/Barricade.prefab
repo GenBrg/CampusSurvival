@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4235281951826740319}
   - component: {fileID: -5478748157398604129}
+  - component: {fileID: 2720745014555147065}
+  - component: {fileID: 1039343056039407078}
+  - component: {fileID: 1149234934645828977}
   m_Layer: 0
   m_Name: Barricade
   m_TagString: Untagged
@@ -44,8 +47,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16f311fa49b38c4f963e03dcdbdc660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 200
+  currentHealth: 200
+--- !u!114 &2720745014555147065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317700077147601494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 933055e217da72c4e94b24778dd65e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactKey: 0
+  hint: 
+  showHint: 0
+--- !u!114 &1039343056039407078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317700077147601494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abf16e77ea53254c94f37ad8d18356c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prototype: {fileID: 11400000, guid: 48e92ec587bee944eb6f441be63eb776, type: 2}
+  level: 1
+--- !u!65 &1149234934645828977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317700077147601494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1140556, y: 1.8429646, z: 2.1307933}
+  m_Center: {x: 0.057027817, y: 1.0849924, z: 0.08231461}
 --- !u!1001 &8392216210120834555
 PrefabInstance:
   m_ObjectHideFlags: 0
