@@ -52,13 +52,11 @@ public class ResourceSpawner : MonoBehaviour
                 minable = Instantiate(scrapMetalMinable, spawnPos.position, spawnPos.rotation).GetComponent<Minable>();
             }
 
-            minable.onMined += () =>
+            minable.onMined.AddListener(() =>
             {
                 unoccupiedPoints.Add(spawnPosIdx);
-            };
+            });
         }
-
-
     }
 
     private void Awake()
