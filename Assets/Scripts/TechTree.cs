@@ -23,6 +23,7 @@ public class TechTree : MonoBehaviour
 
     private void Awake()
     {
+        _instance = this;
         status = new Dictionary<Tech, bool>();
         foreach (Tech tech in Enum.GetValues(typeof(Tech)))
         {

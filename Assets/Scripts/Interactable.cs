@@ -15,7 +15,10 @@ public class Interactable : MonoBehaviour
     {
         set {
             hint = value;
-            HUD.Instance.SetHintText(value);
+            if (HUD.Instance)
+            {
+                HUD.Instance.SetHintText(value);
+            }
         }
     }
 
