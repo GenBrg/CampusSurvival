@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         // Add win condition
         TimeManager.Instance.RegisterOnetimeRoutine(7, 0, 0, () =>
         {
-            win = true;
+            win = TechTree.Instance.IsUnlocked(TechTree.Tech.RADIO_TOWER);
             SceneManager.LoadScene("EndScene");
         });
     }

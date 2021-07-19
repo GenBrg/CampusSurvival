@@ -29,7 +29,10 @@ MonoBehaviour:
     - techs: 
     - techs: 
     - techs: 
-  fulfillment: []
-  maxHP: 
+  fulfillment:
+  - techs: 
+  - techs: 
+  - techs: 
+  maxHP: 64000000c8000000f4010000
   structureModel: {fileID: 0}
   structurePrefab: {fileID: 0}

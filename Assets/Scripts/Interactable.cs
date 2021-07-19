@@ -11,27 +11,19 @@ public class Interactable : MonoBehaviour
     public bool showHint;
     public UnityAction onInteract;
 
-    private HUD hud;
-
     public string Hint
     {
         set {
             hint = value;
-            hud.SetHintText(value);
+            HUD.Instance.SetHintText(value);
         }
-    }
-
-
-    private void Awake()
-    {
-        hud = GameObject.Find("HUD").GetComponent<HUD>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player" && showHint && hint != null)
         {
-            hud.ShowHint(hint);
+            HUD.Instance.ShowHint(hint);
         }
     }
 
@@ -39,7 +31,7 @@ public class Interactable : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            hud.HideHint();
+            HUD.Instance.HideHint();
         }
     }
 

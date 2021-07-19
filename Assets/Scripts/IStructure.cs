@@ -26,7 +26,7 @@ public class IStructure : MonoBehaviour
         get => prototype.requirement;
     }
 
-    private void OnLevelUp()
+    protected virtual void OnLevelUp()
     {
         health.maxHealth = prototype.GetMaxHP(level);
         health.currentHealth = health.maxHealth;
@@ -48,7 +48,7 @@ public class IStructure : MonoBehaviour
         interactable.Hint = sb.ToString();
     }
 
-    private void Awake()
+    public void Awake()
     {
         interactable = GetComponent<Interactable>();
         health = GetComponent<Health>();

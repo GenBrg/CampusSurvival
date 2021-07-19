@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4441f48998ae2ff42b1ed99261a63af5, type: 3}
+  m_Name: Radio Tower
+  m_EditorClassIdentifier: 
+  name: Radio Tower
+  description: Used for escape and defense
+  requirement:
+    materialRequirements:
+    - wood: 3
+      scrapMetal: 3
+      refinedMetal: 0
+    techRequirements:
+    - techs: 
+  fulfillment:
+  - techs: 03000000
+  maxHP: e8030000
+  structureModel: {fileID: 1854632294579534267, guid: fa10d95d744660640a4f0fff47925b76, type: 3}
+  structurePrefab: {fileID: 7426392153486447206, guid: 60be03d07ff1c7147b9ce3acb1fc4259, type: 3}

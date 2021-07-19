@@ -81,7 +81,7 @@ public class Builder : MonoBehaviour
 
         // Align model normal
         structureGhost.transform.rotation = Quaternion.identity;
-        structureGhost.transform.rotation = Quaternion.FromToRotation(Vector3.up, raycastHit.normal);
+        //structureGhost.transform.rotation = Quaternion.FromToRotation(Vector3.up, raycastHit.normal);
         structureGhost.transform.Rotate(Vector3.up, rotation, Space.Self);
 
         if (structureGhost.GetComponent<ActiveCollider>().isColliding)
