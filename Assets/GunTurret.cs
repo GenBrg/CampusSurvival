@@ -46,7 +46,7 @@ public class GunTurret : IStructure
             Vector3 closestDir = Vector3.zero;
             foreach (GameObject enemy in enemies)
             {
-                Vector3 dir = enemy.transform.position - transform.position;
+                Vector3 dir = enemy.transform.position - firePoint.transform.position;
                 float dist = dir.magnitude;
                 if (dist < closest)
                 {

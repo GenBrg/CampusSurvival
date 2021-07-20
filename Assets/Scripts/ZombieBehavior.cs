@@ -26,13 +26,16 @@ public class ZombieBehavior : IEnemyBehavior
 
     public override void Die()
     {
-        --EnemySpawner.Instance.ZombieNum;
-        animator.SetTrigger("Die");
-        Destroy(gameObject, dieAnimation.length);
-        _isDead = true;
+        if (!_isDead)
+        {
+            --EnemySpawner.Instance.ZombieNum;
+            animator.SetTrigger("Die");
+            Destroy(gameObject, dieAnimation.length);
+            _isDead = true;
+        }
     }
 
-    private void FireImpl()
+    protected virtual void FireImpl()
     {
         animator.SetTrigger("Attack");
         AOE attackAOE = Instantiate(zombieAttack, transform).GetComponent<AOE>();

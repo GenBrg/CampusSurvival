@@ -8,11 +8,11 @@ public class Base : IStructure
     public float healInterval = 3;
 
     private RateLimiter healRateLimiter;
-    private Health health;
+    private Health playerHealth;
 
     void HealPlayer()
     {
-        health.Heal(healAmount);
+        playerHealth.Heal(healAmount);
     }
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class Base : IStructure
     {
         if (other.gameObject.GetComponent<CharacterMovement>() && level >= 2)
         {
-            health = other.gameObject.GetComponent<Health>();
+            playerHealth = other.gameObject.GetComponent<Health>();
             healRateLimiter.Invoke();
         }
     }

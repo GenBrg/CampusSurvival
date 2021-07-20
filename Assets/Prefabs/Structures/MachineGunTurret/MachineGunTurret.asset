@@ -16,23 +16,23 @@ MonoBehaviour:
   description: Basic defensive turret
   requirement:
     materialRequirements:
-    - wood: 0
-      scrapMetal: 0
+    - wood: 5
+      scrapMetal: 5
       refinedMetal: 0
-    - wood: 0
-      scrapMetal: 0
+    - wood: 10
+      scrapMetal: 10
       refinedMetal: 0
-    - wood: 0
-      scrapMetal: 0
+    - wood: 20
+      scrapMetal: 20
       refinedMetal: 0
     techRequirements:
     - techs: 
-    - techs: 
-    - techs: 
+    - techs: 01000000
+    - techs: 0200000003000000
   fulfillment:
   - techs: 
   - techs: 
   - techs: 
-  maxHP: 64000000c8000000f4010000
-  structureModel: {fileID: 0}
-  structurePrefab: {fileID: 0}
+  maxHP: 140000003200000064000000
+  structureModel: {fileID: 1722370929895839280, guid: 0a0116c47ba4d8044a6bb55be62d8444, type: 3}
+  structurePrefab: {fileID: 2307587868547730289, guid: c7f0857183c26d747a2b173ceac249bc, type: 3}

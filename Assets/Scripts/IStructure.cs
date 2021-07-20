@@ -56,6 +56,8 @@ public class IStructure : MonoBehaviour
         level = 1;
         interactable.showHint = true;
         interactable.interactKey = KeyCode.E;
+        interactable.onInteract += LevelUp;
+
         health.onHealthChange = (float currentHealth, float maxHealth) =>
         {
             UpdateHintText();

@@ -27,8 +27,8 @@ MonoBehaviour:
       refinedMetal: 0
     techRequirements:
     - techs: 
-    - techs: 
-    - techs: 
+    - techs: 01000000
+    - techs: 02000000
   fulfillment:
   - techs: 
   - techs: 

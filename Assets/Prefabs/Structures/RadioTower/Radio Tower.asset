@@ -16,11 +16,11 @@ MonoBehaviour:
   description: Used for escape and defense
   requirement:
     materialRequirements:
-    - wood: 3
-      scrapMetal: 3
+    - wood: 10
+      scrapMetal: 10
       refinedMetal: 0
     techRequirements:
-    - techs: 
+    - techs: 02000000
   fulfillment:
   - techs: 03000000
   maxHP: e8030000

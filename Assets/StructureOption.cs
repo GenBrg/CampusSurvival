@@ -15,13 +15,16 @@ public class StructureOption : MonoBehaviour
     private TextMeshProUGUI titleUI;
     private TextMeshProUGUI descriptionUI;
 
-    private void Start()
+    private void FindStructureDescription()
     {
         GameObject structureDescription = GameObject.Find("Structure Description");
         TextMeshProUGUI[] tmps = structureDescription.GetComponentsInChildren<TextMeshProUGUI>();
         titleUI = tmps[0];
         descriptionUI = tmps[1];
+    }
 
+    private void Start()
+    {
         StringBuilder sb = new StringBuilder(structure.description);
         sb.AppendLine();
         sb.AppendLine(structure.requirement.ToString(1));
@@ -42,6 +45,11 @@ public class StructureOption : MonoBehaviour
 
     public void OnMouseHover()
     {
+        if (titleUI == null)
+        {
+            FindStructureDescription();
+        }
+
         // Show description
         titleUI.text = structure.name;
         descriptionUI.text = description;

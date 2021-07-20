@@ -15,9 +15,24 @@ MonoBehaviour:
   name: 
   description: 
   requirement:
-    materialRequirements: []
-    techRequirements: []
-  fulfillment: []
-  maxHP: 
+    materialRequirements:
+    - wood: 0
+      scrapMetal: 0
+      refinedMetal: 0
+    - wood: 10
+      scrapMetal: 10
+      refinedMetal: 0
+    - wood: 20
+      scrapMetal: 20
+      refinedMetal: 0
+    techRequirements:
+    - techs: 
+    - techs: 
+    - techs: 
+  fulfillment:
+  - techs: 
+  - techs: 01000000
+  - techs: 02000000
+  maxHP: 000000000000000000000000
   structureModel: {fileID: 0}
   structurePrefab: {fileID: 0}
